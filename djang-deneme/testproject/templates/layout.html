@@ -1,0 +1,32 @@
+{% load static %}   <!-- static klasöründeki css ve js'leri kullanabilmek için. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test application</title>
+    <link rel = "stylesheet" href="{% static 'css/style.css' %}">       <!-- style dosyası tanıtıldı. -->
+    <link rel = "stylesheet" href="{% static 'css/test.css' %}">        <!-- 2. bir css dosyası tanıtıldı. -->
+
+</head>
+<body>
+
+   {% include 'partials/_navbar.html' %}        <!-- partial view örnek 1 -->
+
+    <main>
+        <div class="container mt-4">        
+            
+            {% block content %}
+            {% endblock %}
+
+        </div>
+    </main>
+
+    {% include 'partials/_footer.html' %}       <!-- partial view örnek 2 -->
+
+    <script src="{% static 'js/test.js' %}"></script>       <!-- .JS dosyası tanıtıldı. -->
+
+</body>
+</html>
