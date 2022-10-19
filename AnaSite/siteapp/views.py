@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Bilgisayar
 
 # Create your views here.
 
@@ -7,3 +8,9 @@ def index(request):                                         #urls'de tanımlanan
     return render(request, 'siteapp/index.html')
 
                                                             # daha sonra templates/siteapp klasörü altına geçilip ilgili .html dosyaları oluşturuldu    
+                                                            
+def pc_list(request):
+    bilg_list = Bilgisayar.objects.all()
+    
+    return render(request, 'siteapp/index.html',
+                  {'bilg_list': bilg_list})
