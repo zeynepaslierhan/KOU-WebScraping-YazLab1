@@ -14,8 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 
-urlpatterns = [
+# http://127.0.0.1:8000/
+
+urlpatterns = [                 # Girilen website urllerine pathler tanımlandı ve views.pye'ye geçildi.
+    
+    path('',include('siteapp.urls')),       # siteapp'inin urlsini ekler. Başka bir url için '' içerisine o url'nin admin/ gibi ismi yazılmalıdır.
     path('admin/', admin.site.urls),
 ]
