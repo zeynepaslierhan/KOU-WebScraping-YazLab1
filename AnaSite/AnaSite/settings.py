@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'AnaSite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'yazlabdb',
+        'NAME': 'testdatabase',
     }
 }
 

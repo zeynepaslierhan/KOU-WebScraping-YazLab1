@@ -2,15 +2,74 @@
 {% load static %}
 
 {% block content %}
+    <h1>Bilgisayarlar</h1>
+    <br/>
+    <br/>
+    
+          <!--Section: Products v.3-->
+          <section class="text-center mb-4">
 
-    <h1>Bilgisayar Listesi</h1>
 
-    <ul>
-{% for bilgisayar in bilg_list %}
-    <li> {{ bilgisayar.marka }} 
-    {{ bilgisayar.model }}
-    {{ bilgisayar.ram }}
-    {{ bilgisayar.ssd }}</li>
-    {% endfor %}
-    </ul>
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+            {%for bilgisayar in bilg_list%}
+    
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-6 mb-4">
+    
+                <!--Card-->
+                <div class="card">
+    
+                  <!--Card image-->
+                  <div class="view overlay">
+                    <img src="{{bilgisayar.image}}" class="card-img-top"
+                      alt="">
+                    <a>
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                  <!--Card image-->
+                  
+                  <!--Card content-->
+                  <div class="card-body text-center">
+                    
+                    <!--Category & Title-->
+                    <h5>
+                      <strong>
+                        <a href="" class="dark-grey-text">
+                            
+                            {{bilgisayar.isim}}
+                            
+                        </a>
+                      </strong>
+                    </h5>
+    
+                    <h4 class="font-weight-bold blue-text">
+                      <strong>
+                        
+                        {{bilgisayar.fiyat1}} TL
+                        <br/>
+                        {{bilgisayar.fiyat2}} TL
+                        <br/>
+                        {{bilgisayar.fiyat3}} TL
+                        
+                      </strong>
+                    </h4>
+    
+                  </div>
+                  <!--Card content-->
+    
+                </div>
+                <!--Card-->
+    
+              </div>
+              <!--Grid column-->
+    
+            {% endfor %}  
+        </section>
+          <!--Section: Products v.3-->
+
 {% endblock %}
+
+

@@ -1,12 +1,14 @@
 from django.db import models
 
+
 # Create your models here.
 
-class Bilgisayar(models.Model):
-    bilgisayarId = models.AutoField(primary_key=True)
-    marka = models.CharField(max_length = 50)
-    model = models.CharField(max_length = 50)
-    ram = models.IntegerField()
-    ssd = models.IntegerField()
+class Bilg(models.Model):
+    pcId = models.AutoField(primary_key=True)
+    isim = models.CharField(max_length = 200)
+    fiyat1 = models.FloatField()
+    fiyat2 = models.FloatField()
+    fiyat3 = models.FloatField()
+    image = models.ImageField(upload_to = 'static/pc_img')
     
     
