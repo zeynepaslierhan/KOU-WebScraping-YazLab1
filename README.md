@@ -88,7 +88,7 @@ Semi-structured, json tipinde veriler varsa ve bu verilerin herhangi bir yerinde
 
 Çünkü MongoDB’nin çokça kendine ait nasıl kullanılacağını anlatan kaynaklara sahip. Diğer Doküman tabanlı NoSQL veritabanlarına göre daha çok kullanılıyor.Bu da proje geliştirirken daha kolay ilerlememizi sağladı.
 
-![Screenshot 2022-10-09 161909.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/Screenshot_2022-10-09_161909.png)
+![Screenshot 2022-10-09 161909.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/Neden%20MongoDB%20Kulland%C4%B1k%201.png)
 
 MongoDB, verileri kaydettiği dokumanları JSON benzeri Binary JSON (BSN) formatında saklar. MongoDB’de yaptığımız işlemlerin ilişkisel veritabanındaki karşılıkları:
 
