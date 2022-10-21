@@ -1,5 +1,3 @@
-# README.md
-
 # .Net Core ile Web Scraping E-Ticaret
 
 Trendyol, Hepsiburada, n11, Amazon, gibi e ticaret sitelerinden istenilen ürüne ait bilgilerin yer aldığı bir veritabanı oluşturulacak ve bu veritabanından istenilen bilgileri web sayfası üzerinde gösterilecektir.
