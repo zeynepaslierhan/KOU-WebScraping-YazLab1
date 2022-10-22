@@ -76,10 +76,6 @@ WSGI_APPLICATION = 'AnaSite.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'testdatabase',
-    }
 }
 
 

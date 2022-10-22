@@ -3,6 +3,4 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Bilg)
-
 # admin ,  20012022
