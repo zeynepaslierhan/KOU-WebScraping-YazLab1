@@ -25,7 +25,6 @@ def trendyol(product):
 
 
     name = product['Name']
-    trendyol = product['Trendyol']
 
     browser = webdriver.Chrome(driver_path)
     browser.get("https://www.google.com/")
@@ -60,7 +59,6 @@ def hepsiBurada(product):
 
 
     name = product['Name']
-    trendyol = product['Trendyol']
 
     browser = webdriver.Chrome(driver_path)
     browser.get("https://www.google.com/")
@@ -91,6 +89,41 @@ def hepsiBurada(product):
     print(product_price)
     mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Price": product_price}})
 
+def cicekSepetiExtra(product):
+    
+    name = product['Name']
+
+    browser = webdriver.Chrome(driver_path)
+    browser.get("https://www.google.com/")
+
+    cicekSepetiExtra_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
+    cicekSepetiExtra_veri_girisi.send_keys(name+" "+" site:ciceksepeti.com")
+
+    cicekSepetiExtra_veri_girisi.send_keys(Keys.ENTER)
+
+    cicekSepetiExtra_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
+    cicekSepetiExtra_tikla.click()
+
+    product_url = browser.current_url
+    print(product_url)
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
+
+    product_soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+    product_name=product_soup.h1.text
+    print(product_name)
+
+    if product_soup.find("div",{"class":"product__info__new-price__integer js-price-integer"}) is not None:
+        product_price = product_soup.find("div",{"class":"product__info__new-price__integer js-price-integer"}).text
+
+    else:
+        product_price= None
+
+    print(product_price)
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_price}})
+
+
 for product in mycollection.find({}):
     trendyol(product)
     hepsiBurada(product)
+    cicekSepetiExtra(product)
