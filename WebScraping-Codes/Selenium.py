@@ -33,12 +33,12 @@ def trendyol(product):
 
     trednyol_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     trednyol_veri_girisi.send_keys(name+" "+" site:trendyol.com")
-
+    time.sleep(4)
     trednyol_veri_girisi.send_keys(Keys.ENTER)
-
+    time.sleep(4)
     trendyol_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
     trendyol_tikla.click()
-
+    time.sleep(4)
     product_url = browser.current_url
     print(product_url)
     
@@ -71,12 +71,13 @@ def hepsiBurada(product):
 
     hepsiBurada_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     hepsiBurada_veri_girisi.send_keys(name+" "+" site:hepsiburada.com")
+    time.sleep(4)
 
     hepsiBurada_veri_girisi.send_keys(Keys.ENTER)
-
+    time.sleep(4)
     hepsiBurada_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
     hepsiBurada_tikla.click()
-
+    time.sleep(4)
     product_url = browser.current_url
     print(product_url)
     
@@ -109,12 +110,12 @@ def cicekSepetiExtra(product):
 
     cicekSepetiExtra_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     cicekSepetiExtra_veri_girisi.send_keys(name+" "+" site:ciceksepeti.com")
-
+    time.sleep(4)
     cicekSepetiExtra_veri_girisi.send_keys(Keys.ENTER)
-
+    time.sleep(4)
     cicekSepetiExtra_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
     cicekSepetiExtra_tikla.click()
-
+    time.sleep(4)
     product_url = browser.current_url
     print(product_url)
     
@@ -148,12 +149,12 @@ def vatanBilgisayar(product):
 
     vatanBilgisayar_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     vatanBilgisayar_veri_girisi.send_keys(name+" "+" site:vatanbilgisayar.com")
-
+    time.sleep(4)
     vatanBilgisayar_veri_girisi.send_keys(Keys.ENTER)
-
+    time.sleep(4)
     vatanBilgisayar_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
     vatanBilgisayar_tikla.click()
-
+    time.sleep(4)
     product_url = browser.current_url
     print(product_url)
     
@@ -187,12 +188,12 @@ def amazon(product):
 
     amazon_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     amazon_veri_girisi.send_keys(name+" "+" site:amazon.com.tr")
-
+    time.sleep(4)
     amazon_veri_girisi.send_keys(Keys.ENTER)
-
+    time.sleep(4)
     amazon_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
     amazon_tikla.click()
-
+    time.sleep(4)
     product_url = browser.current_url
     print(product_url)
     
@@ -223,12 +224,12 @@ def teknosa(product):
 
     teknosa_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     teknosa_veri_girisi.send_keys(name+" "+" site:teknosa.com")
-
+    time.sleep(4)
     teknosa_veri_girisi.send_keys(Keys.ENTER)
-
+    time.sleep(4)
     teknosa_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
     teknosa_tikla.click()
-
+    time.sleep(4)
     product_url = browser.current_url
     print(product_url)
     
@@ -254,9 +255,9 @@ mycollectionComputer = mydb['BilgisayarismiVeFotografı']
 for product in mycollectionComputer.find({}):
     mycollection.delete_many({})
     mycollection.insert_one({"Name" : product['Name'],"Img" : product['Img']})
-    #teknosa(product)
-    #amazon(product)
-    #vatanBilgisayar(product)
-    cicekSepetiExtra(product)
     hepsiBurada(product)
+    teknosa(product)
+    amazon(product)
+    vatanBilgisayar(product)
+    cicekSepetiExtra(product)
     trendyol(product)
