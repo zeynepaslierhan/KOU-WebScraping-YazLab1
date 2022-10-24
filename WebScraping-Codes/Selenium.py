@@ -167,9 +167,74 @@ def vatanBilgisayar(product):
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.Price": product_price}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.URL": product_url}})
 
+def amazon(product):
+    name = product['Name']
+
+    browser = webdriver.Chrome(driver_path)
+    browser.get("https://www.google.com/")
+
+    amazon_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
+    amazon_veri_girisi.send_keys(name+" "+" site:amazon.com.tr")
+
+    amazon_veri_girisi.send_keys(Keys.ENTER)
+
+    amazon_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
+    amazon_tikla.click()
+
+    product_url = browser.current_url
+    print(product_url)
+    
+
+    product_soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+    product_name=product_soup.h1.text
+    print(product_name)
+
+    product_price = browser.find_element("css selector","#corePriceDisplay_desktop_feature_div > div.a-section.a-spacing-none.aok-align-center > span > span.a-offscreen")
+    product_priceText = product_price.get_attribute("innerHTML")
+
+    print(product_priceText)
+
+    if product_price is not None:
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Amazon.Price": product_priceText}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Amazon.URL": product_url}})
+
+def teknosa(product):
+    name = product['Name']
+
+    browser = webdriver.Chrome(driver_path)
+    browser.get("https://www.google.com/")
+
+    teknosa_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
+    teknosa_veri_girisi.send_keys(name+" "+" site:teknosa.com")
+
+    teknosa_veri_girisi.send_keys(Keys.ENTER)
+
+    teknosa_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
+    teknosa_tikla.click()
+
+    product_url = browser.current_url
+    print(product_url)
+    
+
+    product_soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+    product_name=product_soup.h1.text
+    print(product_name)
+
+    product_price = browser.find_element("css selector","#pdp-main > div.pdp-block2.pdpGeneralWidth > div.pdp-details > div.addtocart-component > div > div.AddToCart-AddToCartAction > div > div.pdp-amount.prc-last-2 > div > div > span")
+    product_priceText = product_price.get_attribute("innerHTML")
+
+    print(product_priceText)
+
+    if product_price is not None:
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"teknosa.Price": product_priceText}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"teknosa.URL": product_url}})
 
 for product in mycollection.find({}):
-    trendyol(product)
-    hepsiBurada(product)
-    cicekSepetiExtra(product)
+    teknosa(product)
+    amazon(product)
     vatanBilgisayar(product)
+    cicekSepetiExtra(product)
+    hepsiBurada(product)
+    trendyol(product)
