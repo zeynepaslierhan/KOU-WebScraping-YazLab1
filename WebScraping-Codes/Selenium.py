@@ -1,3 +1,4 @@
+from ast import Delete
 import pymongo 
 from bs4 import BeautifulSoup
 import requests
@@ -22,7 +23,8 @@ mydb = myclient["Bilgisayar"]
 mycollection= mydb["Products"]
 
 def trendyol(product):
-
+    
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.Mevcut": False}})
 
     name = product['Name']
 
@@ -57,10 +59,11 @@ def trendyol(product):
     if product_price is not None:
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.Price": product_price}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.URL": product_url}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.Mevcut": True}})
 
 def hepsiBurada(product):
 
-
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Mevcut": False}})
     name = product['Name']
 
     browser = webdriver.Chrome(driver_path)
@@ -94,9 +97,11 @@ def hepsiBurada(product):
     if product_price is not None:
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Price": product_price}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.URL": product_url}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Mevcut": True}})
 
 def cicekSepetiExtra(product):
     
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Mevcut": False}})
     name = product['Name']
 
     browser = webdriver.Chrome(driver_path)
@@ -131,8 +136,10 @@ def cicekSepetiExtra(product):
     if product_price is not None:
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_price}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Mevcut": True}})
 
 def vatanBilgisayar(product):
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.Mevcut": False}})
     name = product['Name']
 
     browser = webdriver.Chrome(driver_path)
@@ -166,8 +173,12 @@ def vatanBilgisayar(product):
     if product_price is not None:
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.Price": product_price}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.URL": product_url}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.Mevcut": True}})
 
 def amazon(product):
+    
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Amazon.Mevcut": False}})
+
     name = product['Name']
 
     browser = webdriver.Chrome(driver_path)
@@ -198,9 +209,13 @@ def amazon(product):
     if product_price is not None:
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Amazon.Price": product_priceText}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Amazon.URL": product_url}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Amazon.Mevcut": True}})
 
 def teknosa(product):
+    
     name = product['Name']
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"teknosa.Mevcut": False}})
+    
 
     browser = webdriver.Chrome(driver_path)
     browser.get("https://www.google.com/")
@@ -230,8 +245,14 @@ def teknosa(product):
     if product_price is not None:
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"teknosa.Price": product_priceText}})
         mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"teknosa.URL": product_url}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"teknosa.Mevcut": True}})
 
-for product in mycollection.find({}):
+
+mycollectionComputer = mydb['BilgisayarismiVeFotografı']
+
+for product in mycollectionComputer.find({}):
+    mycollection.delete_many({})
+    mycollection.insert_one({"Name" : product['Name'],"Img" : product['Img']})
     teknosa(product)
     amazon(product)
     vatanBilgisayar(product)
