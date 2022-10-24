@@ -124,19 +124,20 @@ def cicekSepetiExtra(product):
     product_name=product_soup.h1.text
     print(product_name)
 
-    if product_soup.find("div",{"class":"product__info__new-price__integer js-price-integer"}) is not None:
-        product_price = product_soup.find("div",{"class":"product__info__new-price__integer js-price-integer"}).text
-
+    if browser.find_element("css selector", "#productDetailSend > div > div > div:nth-child(2) > div.product__main-info-right.js-set-date-base-campaing-class > div.product__not-available.js-product-not-available.js-no-stock"):
+        print("Stok bitmiş")
     else:
-        product_price= None
+        product_price = browser.find_element("css selector","#productDetailSend > div > div > div:nth-child(2) > div.product__main-info-right.js-set-date-base-campaing-class > div:nth-child(2) > div > div.product__info-wrapper--right > div.product__info__price.js-default-price > div.product__info__new-price.js-price-container > div.product__info__new-price__integer.js-price-integer")
+        product_priceText = product_price.get_attribute("innerHTML")
 
-    print(product_price)
-    
-    
-    if product_price is not None:
-        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_price}})
-        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
-        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Mevcut": True}})
+
+        print(product_priceText)
+        
+        
+        if product_price is not None:
+            mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_priceText}})
+            mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
+            mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Mevcut": True}})
 
 def vatanBilgisayar(product):
     mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.Mevcut": False}})
@@ -253,9 +254,9 @@ mycollectionComputer = mydb['BilgisayarismiVeFotografı']
 for product in mycollectionComputer.find({}):
     mycollection.delete_many({})
     mycollection.insert_one({"Name" : product['Name'],"Img" : product['Img']})
-    teknosa(product)
-    amazon(product)
-    vatanBilgisayar(product)
+    #teknosa(product)
+    #amazon(product)
+    #vatanBilgisayar(product)
     cicekSepetiExtra(product)
     hepsiBurada(product)
     trendyol(product)
