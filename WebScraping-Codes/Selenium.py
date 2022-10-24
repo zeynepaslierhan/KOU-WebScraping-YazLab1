@@ -39,7 +39,7 @@ def trendyol(product):
 
     product_url = browser.current_url
     print(product_url)
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.URL": product_url}})
+    
 
     product_soup = BeautifulSoup(browser.page_source, 'html.parser')
 
@@ -53,7 +53,10 @@ def trendyol(product):
         product_price= None
 
     print(product_price)
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.Price": product_price}})
+
+    if product_price is not None:
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.Price": product_price}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.URL": product_url}})
 
 def hepsiBurada(product):
 
@@ -73,7 +76,7 @@ def hepsiBurada(product):
 
     product_url = browser.current_url
     print(product_url)
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.URL": product_url}})
+    
 
     product_soup = BeautifulSoup(browser.page_source, 'html.parser')
 
@@ -87,7 +90,10 @@ def hepsiBurada(product):
         product_price= None
 
     print(product_price)
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Price": product_price}})
+
+    if product_price is not None:
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Price": product_price}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.URL": product_url}})
 
 def cicekSepetiExtra(product):
     
@@ -106,7 +112,7 @@ def cicekSepetiExtra(product):
 
     product_url = browser.current_url
     print(product_url)
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
+    
 
     product_soup = BeautifulSoup(browser.page_source, 'html.parser')
 
@@ -120,10 +126,50 @@ def cicekSepetiExtra(product):
         product_price= None
 
     print(product_price)
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_price}})
+    
+    
+    if product_price is not None:
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_price}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
+
+def vatanBilgisayar(product):
+    name = product['Name']
+
+    browser = webdriver.Chrome(driver_path)
+    browser.get("https://www.google.com/")
+
+    vatanBilgisayar_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
+    vatanBilgisayar_veri_girisi.send_keys(name+" "+" site:vatanbilgisayar.com")
+
+    vatanBilgisayar_veri_girisi.send_keys(Keys.ENTER)
+
+    vatanBilgisayar_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
+    vatanBilgisayar_tikla.click()
+
+    product_url = browser.current_url
+    print(product_url)
+    
+
+    product_soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+    product_name=product_soup.h1.text
+    print(product_name)
+
+    if product_soup.find("span",{"class":"product-list__price"}) is not None:
+        product_price = product_soup.find("span",{"class":"product-list__price"}).text
+
+    else:
+        product_price= None
+
+    print(product_price)
+
+    if product_price is not None:
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.Price": product_price}})
+        mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"vatanBilgisayar.URL": product_url}})
 
 
 for product in mycollection.find({}):
     trendyol(product)
     hepsiBurada(product)
     cicekSepetiExtra(product)
+    vatanBilgisayar(product)
