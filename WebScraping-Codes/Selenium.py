@@ -55,7 +55,42 @@ def trendyol(product):
 
     print(product_price)
     mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"Trendyol.Price": product_price}})
-    
+
+def hepsiBurada(product):
+
+
+    name = product['Name']
+    trendyol = product['Trendyol']
+
+    browser = webdriver.Chrome(driver_path)
+    browser.get("https://www.google.com/")
+
+    hepsiBurada_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
+    hepsiBurada_veri_girisi.send_keys(name+" "+" site:hepsiburada.com")
+
+    hepsiBurada_veri_girisi.send_keys(Keys.ENTER)
+
+    hepsiBurada_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
+    hepsiBurada_tikla.click()
+
+    product_url = browser.current_url
+    print(product_url)
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.URL": product_url}})
+
+    product_soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+    product_name=product_soup.h1.text
+    print(product_name)
+
+    if product_soup.find("del",{"id":"originalPrice"}) is not None:
+        product_price = product_soup.find("del",{"id":"originalPrice"}).text
+
+    else:
+        product_price= None
+
+    print(product_price)
+    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"HepsiBurada.Price": product_price}})
 
 for product in mycollection.find({}):
     trendyol(product)
+    hepsiBurada(product)
