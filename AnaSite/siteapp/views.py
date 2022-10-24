@@ -24,7 +24,7 @@ def pc_list(request):
     return render(request, 'siteapp/index.html',
                   {'bilg_list': bilg_list})
     
-def product_page(request):
-    product = mycollection.find({"isim": "ZEYNEPIN TOTOSUNU TOKATLAYAN PC"})
+def product_page(request,pcno):
+    product = mycollection.find({"pcno": pcno})
     return render(request, 'siteapp/product.html',
                   {'product':product})

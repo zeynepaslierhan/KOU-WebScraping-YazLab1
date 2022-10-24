@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block content %}
+
   <!--Main layout-->
+  {%for bilgisayar in product%}
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
 
@@ -27,16 +29,15 @@
             <h4 class="font-weight-bold blue-text">    
               <span>
                 <strong>    
-                  {%for bilgisayar in product%}
+                  
                   <h1>{{bilgisayar.trendyol.fiyat}}</h1>
-                  {%endfor%}</strong>
+                  </strong>
             </span>
             </h4>
 
             <p class="lead font-weight-bold">
-                {%for bilgisayar in product%}
                 <h1>{{bilgisayar.isim}}</h1>
-                {%endfor%}</p>
+                </p>
 
             <p> 
                 Ürün hakkında bla bla bla
@@ -75,5 +76,6 @@
     </div>
   </main>
   <!--Main layout-->
+  {%endfor%}
   
 {% endblock %}
