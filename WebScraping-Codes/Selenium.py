@@ -7,11 +7,9 @@ import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0'}
+import validators
 
 driver_path = 'C:\\Users\\zerha\\Downloads\\chromedriver.exe'
-
 
 # Cluster-WebScraping için bağlantı sağlandı. (username: zeyneperhan password: 20012022)
 myclient = pymongo.MongoClient("mongodb://zeynep:20012022@ac-akv12vk-shard-00-00.6erqfem.mongodb.net:27017,ac-akv12vk-shard-00-01.6erqfem.mongodb.net:27017,ac-akv12vk-shard-00-02.6erqfem.mongodb.net:27017/?ssl=true&replicaSet=atlas-8ffx15-shard-0&retryWrites=true&w=majority") 
@@ -70,11 +68,12 @@ def hepsiBurada(product):
 
     browser = webdriver.Chrome(driver_path)
     browser.get("https://www.google.com/")
-
+    time.sleep(2)
     hepsiBurada_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     hepsiBurada_veri_girisi.send_keys(name+" "+" site:hepsiburada.com")
-
+    time.sleep(2)
     hepsiBurada_veri_girisi.send_keys(Keys.ENTER)
+    time.sleep(2)
 
     try:
         hepsiBurada_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
@@ -121,9 +120,6 @@ def cicekSepetiExtra(product):
         cicekSepetiExtra_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
         cicekSepetiExtra_tikla.click()
         product_url = browser.current_url
-        
-
-        product_soup = BeautifulSoup(browser.page_source, 'html.parser')
 
         if browser.find_element("css selector", "#productDetailSend > div > div > div:nth-child(2) > div.product__main-info-right.js-set-date-base-campaing-class > div.product__not-available.js-product-not-available.js-no-stock"):
             print("Stok bitmiş")
@@ -308,11 +304,79 @@ def n11(product):
         print("Exception Handled")
 
 
-mycollectionComputer = mydb['BilgisayarismiVeFotografı']
-mycollection.delete_many({})
+def hepsiBuradaTam():
 
-for product in mycollectionComputer.find({}):
-    mycollection.insert_one({"Name" : product['Name'],"Img" : product['Img']})
+    headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0'}
+
+    # Verileri çekeceğimiz sitenin ana url'si
+    base_url = 'https://www.hepsiburada.com/laptop-notebook-dizustu-bilgisayarlar-c-98?sayfa={0}'
+
+    #veriyi tutan dict
+    item = {}
+
+    for i in range(1,2):
+            
+        print('Processing {0}...'.format(base_url.format(i)))
+        print("-------------")    
+
+        valid=validators.url(base_url.format(i))
+                
+        if valid==True:
+            print("Valid url")
+        else:
+            print("Invalid url")
+            print(base_url.format(i))
+            continue
+        
+        response = requests.get(base_url.format(i), headers=headers)
+        print(response)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        results = soup.find_all('li',{'class': 'productListContent-zAP0Y5msy8OHn5z7T_K_'})
+
+        for result in results:
+            product_name = result.h3.text
+            
+            try:
+                product_url = 'https://www.hepsiburada.com'+result.a.get("href")
+
+                valid=validators.url(product_url)
+                if valid==True:
+                    item["product_url"]= product_url
+                else:
+                    print("Invalid url")
+                    print(product_url)
+                    continue    
+
+                product_response = requests.get(product_url, headers=headers)
+                            
+                product_soup = BeautifulSoup(product_response.content, 'html.parser')
+
+                product_details = product_soup.find_all("table",{"class":"data-list tech-spec"})
+
+                for details in product_details:
+
+                    informations = details.find_all("tr")
+
+                    for info in informations:
+
+                        try:               
+                            label = info.find("th").text
+                            value = info.find("span").text
+
+                            item[label]=value            
+                        except AttributeError:
+                         continue
+            except AttributeError:
+                continue
+
+            item["Name"] = product_name
+            mycollection.insert_one(item)
+            item.clear()
+
+
+hepsiBuradaTam()
+for product in mycollection.find({}):
     hepsiBurada(product)
     teknosa(product)
     amazon(product)
