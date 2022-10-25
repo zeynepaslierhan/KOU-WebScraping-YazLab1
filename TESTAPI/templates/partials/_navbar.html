@@ -1,0 +1,44 @@
+<header>
+    <div class = "navbar navbar-expand-sm bg-primary navbar-dark"> 
+        <div class="container">
+            <a href="/" class="navbar-brand">NAVBAR PARTIAL ORNEK</a>
+            <ul class="navbar-nav mr-auto">
+                <li
+                    {% if request.path == '/' %}
+                        class = "nav-item active"
+
+                    {% else %}
+                        class="nav-item"
+
+                    {% endif %}>
+
+                    <a href="{% url 'index' %}" class="nav-link">NAVBAR.Home</a>
+                </li>
+                <li
+                    {% if 'about' in request.path %}
+                        class = "nav-item active"
+
+                    {% else %}
+                        class="nav-item"
+
+                    {% endif %}> 
+
+                    <a href="{% url 'about' %}" class="nav-link">NAVBAR.About</a>
+                </li>  
+
+                <li
+                    {% if 'app2' in request.path %}
+                        class = "nav-item active"
+
+                    {% else %}
+                        class="nav-item"
+
+                    {% endif %}> 
+
+                    <a href="{% url 'app2' %}" class="nav-link">NAVBAR.APP2</a>
+                </li>  
+
+            </ul>
+        </div>
+    </div>
+</header>
