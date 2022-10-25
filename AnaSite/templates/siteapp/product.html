@@ -15,7 +15,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="{{bilgisayar.Img}}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -26,23 +26,37 @@
           <!--Content-->
           <div class="p-4">
 
-            <h4 class="font-weight-bold blue-text">    
-              <span>
-                <strong>    
-                  
-                  <h1>{{bilgisayar.trendyol.fiyat}}</h1>
-                  </strong>
-            </span>
-            </h4>
+
 
             <p class="lead font-weight-bold">
-                <h1>{{bilgisayar.isim}}</h1>
+                <h2>{{bilgisayar.Name}}</h2>
                 </p>
 
-            <p> 
-                Ürün hakkında bla bla bla
-                </p>
-            
+            <h4 class="font-weight-normal blue-text">    
+              <span>
+                <br/>
+                <a href="{{bilgisayar.HepsiBurada.URL}}">Hepsiburada: {{bilgisayar.HepsiBurada.Price}}</a>
+                <br/>
+                <br/>
+                <a href="{{bilgisayar.Teknosa.URL}}">Teknosa: {{bilgisayar.teknosa.Price}}</a>
+                <br/>
+                <br/>
+                <a href="{{bilgisayar.Amazon.URL}}">Amazon: {{bilgisayar.Amazon.Price}}</a>
+                <br/>
+                <br/>
+                <a href="{{bilgisayar.vatanBilgisayar.URL}}">VatanBilgisayar: {{bilgisayar.vatanBilgisayar.Price}}</a>
+                <br/>
+                <br/>
+                <a href="{{bilgisayar.cicekSepetiExtra.URL}}">ÇiçekSepetiExtra: {{bilgisayar.cicekSepetiExtra.Price}}</a>
+                <br/>
+                <br/>
+                <a href="{{bilgisayar.Trendyol.URL}}">Trendyol: {{bilgisayar.Trendyol.Price}}</a>
+                <br/>
+                <br/>
+                <a href="{{bilgisayar.n11.URL}}">N11: {{bilgisayar.n11.Price}}</a>
+    
+              </span>
+            </h4>
 
           </div>
           <!--Content-->

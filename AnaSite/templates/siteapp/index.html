@@ -7,64 +7,63 @@
     <br/>
     
           <!--Section: Products v.3-->
+          
           <section class="text-center mb-4">
-
-
+            {%for bilgisayar in bilg_list%}
+            <hr>
+            
             <!--Grid row-->
             <div class="row wow fadeIn">
 
-            {%for bilgisayar in bilg_list%}
+            
               
     
+            <div class="row wow fadeIn">
+
               <!--Grid column-->
-              <div class="col-lg-3 col-md-6 mb-4">
-    
-                <!--Card-->
-                <div class="card">
-                  <!--Card image-->
-                  <div class="view overlay">
-                    <img src="{{bilgisayar.img}}" class="card-img-top"
-                      alt="">
-                    <a>
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
-                  </div>
-                  <!--Card image-->
+              <div class="col-md-6 mb-4">
+      
+                <img src="{{bilgisayar.Img}}" class="img-fluid" alt="">
+      
+              </div>
+              <hr>
+              <!--Grid column-->
+      
+              <!--Grid column-->
+              <div class="col-md-6 mb-4">
+      
+                <!--Content-->
+                <div class="p-4">
+      
+                  <h5 class="font-weight-normal blue-text">    
+                    <span>
+                      {%if bilgisayar.HepsiBurada.Mevcut %}
+                      <a href="{{bilgisayar.HepsiBurada.URL}}">Hepsiburada: {{bilgisayar.HepsiBurada.Price}}</a>
+                      {%endif%}
+                      <br/>
+                      {%if bilgisayar.teknosa.Mevcut %}
+                      <a href="{{bilgisayar.Teknosa.URL}}">Teknosa: {{bilgisayar.teknosa.Price}}</a>
+                      {%endif%}
+                      <br/>
+                      {%if bilgisayar.Amazon.Mevcut %}
+                      <a href="{{bilgisayar.Amazon.URL}}">Amazon: {{bilgisayar.Amazon.Price}}</a>
+                      {%endif%}
+                  </span>
+                  </h5>
+      
+                  <a href="{% url 'product_page' bilgisayar.Name %}" >
+                    <p class="lead font-weight-bold">
+                      <h6 style="color: black;">{{bilgisayar.Name}}</h6>
+                    </p>
+                  </a>
                   
-                  <!--Card content-->
-                  <div class="card-body text-center">
-                    
-                    <!--Category & Title-->
-                    <h5>
-                      <strong>
-                        <a href="{% url 'product_page' bilgisayar.pcno %}" class="dark-grey-text">
-                            
-                            {{bilgisayar.isim}}
-                            
-                        </a>
-                      </strong>
-                    </h5>
-    
-                    <h4 class="font-weight-normal blue-text">
-                      <strong>
-                        
-                        {{bilgisayar.trendyol.url}}
-                        <br/>
-                        {{bilgisayar.trendyol.fiyat}}
-                        
-                      </strong>
-                    </h4>
-                    
-                  </div>
-                  <!--Card content-->
-    
                 </div>
-                <!--Card-->
-    
+                <!--Content-->
               </div>
               <!--Grid column-->
-    
-            {% endfor %}  
+              <hr>
+            </div>
+            {% endfor %} 
         </section>
           <!--Section: Products v.3-->
 
