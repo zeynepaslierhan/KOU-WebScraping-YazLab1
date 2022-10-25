@@ -73,7 +73,7 @@ def hepsiBurada(product):
     hepsiBurada_veri_girisi.send_keys(name+" "+" site:hepsiburada.com")
     time.sleep(2)
     hepsiBurada_veri_girisi.send_keys(Keys.ENTER)
-    time.sleep(2)
+    time.sleep(25)
 
     try:
         hepsiBurada_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
@@ -314,7 +314,7 @@ def hepsiBuradaTam():
 
     #veriyi tutan dict
     item = {}
-
+    j=0
     for i in range(1,2):
             
         print('Processing {0}...'.format(base_url.format(i)))
@@ -339,10 +339,22 @@ def hepsiBuradaTam():
             
             try:
                 product_url = 'https://www.hepsiburada.com'+result.a.get("href")
-
                 valid=validators.url(product_url)
                 if valid==True:
                     item["product_url"]= product_url
+                    browser = webdriver.Chrome(driver_path)
+                    browser.get(product_url)
+                    try:
+                        img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
+                        browser.get(img_url)
+                        img_loc = "C:/Users/zerha/Downloads/{0}.png".format(j)
+                        j=j+1
+                        browser.save_screenshot(img_loc)
+                        item["Img"]= img_loc
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    
                 else:
                     print("Invalid url")
                     print(product_url)
@@ -375,7 +387,7 @@ def hepsiBuradaTam():
             item.clear()
 
 
-hepsiBuradaTam()
+#hepsiBuradaTam()
 for product in mycollection.find({}):
     hepsiBurada(product)
     teknosa(product)
