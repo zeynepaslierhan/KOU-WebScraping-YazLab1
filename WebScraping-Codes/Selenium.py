@@ -334,20 +334,30 @@ def hepsiBuradaTam():
         
         for result in results:
             product_name = result.h3.text
+            item["Name"] = product_name
             item["index"] = j
             j=j+1
             try:
                 product_url = 'https://www.hepsiburada.com'+result.a.get("href")
                 valid=validators.url(product_url)
                 if valid==True:
+                    
+                    product_response = requests.get(product_url, headers=headers)
+                    product_soup = BeautifulSoup(product_response.content, 'html.parser')
+                    product_details = product_soup.find_all("table",{"class":"data-list tech-spec"})
                     detail={}
                     browser = webdriver.Chrome(driver_path)
                     browser.get(product_url)
-
-                    #ilgili veriler
                     try:
                         Marka = browser.find_element("css selector","body > div.wrapper > main > div.product-detail-module > section.detail-main > div.container.contain-lg-4.contain-md-4.contain-sm-1.fluid > div > div.productDetailRight.col.lg-2.md-2.sm-1.grid-demo-fluid > div.product-information.col.lg-5.sm-1 > span > a").get_attribute("innerHTML")
                         detail["Marka"]= Marka
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    
+                    try:
+                        img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
+                        item["Img"]= img_url
                     except NoSuchElementException:
                         print("Exception Handled")
                         continue
@@ -356,86 +366,65 @@ def hepsiBuradaTam():
                         detail["İşletimSistemi"]= İşletimSistemi
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         BellekHızı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(1) > td > span").get_attribute("innerHTML")
                         detail["BellekHızı"]= BellekHızı
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         CihazAğırlığı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(4) > td > span").get_attribute("innerHTML")
                         detail["CihazAğırlığı"]= CihazAğırlığı
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         EkranKartı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(10) > td > a").get_attribute("innerHTML")
                         detail["EkranKartı"]= EkranKartı
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
-
                     try:
                         İşlemciNesli = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(16) > td > a").get_attribute("innerHTML")
                         detail["İşlemciNesli"]= İşlemciNesli
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         İşlemci = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(18) > td > a").get_attribute("innerHTML")
                         detail["İşlemci"]= İşlemci
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         Klavye = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(21) > td > span").get_attribute("innerHTML")
                         detail["Klavye"]= Klavye
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
 
                     try:
                         RamSistemBelleği = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(26) > td > a").get_attribute("innerHTML")
                         detail["RamSistemBelleği"]= RamSistemBelleği
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         RamTipi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(27) > td > span").get_attribute("innerHTML")
                         detail["RamTipi"]= RamTipi
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         Renk = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(28) > td > span").get_attribute("innerHTML")
                         detail["Renk"]= Renk
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
-
                     try:
                         SSDKapasitesi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(29) > td > a").get_attribute("innerHTML")
                         detail["SSDKapasitesi"]= SSDKapasitesi
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
                     try:
                         TemelİşlemciHızı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(30) > td > span").get_attribute("innerHTML")
                         detail["TemelİşlemciHızı"]= TemelİşlemciHızı
                     except NoSuchElementException:
                         print("Exception Handled")
-                        continue
-                    
                     
                     item["Details"]=detail
 
-                    try:
-                        img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
-                        item["Img"]= img_url
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                        continue
                 else:
                     print("Invalid url")
                     print(product_url)
@@ -444,8 +433,6 @@ def hepsiBuradaTam():
                 
             except AttributeError:
                 continue
-
-            item["Name"] = product_name
 
             mycollection.insert_one(item)
             item.clear()
