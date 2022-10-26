@@ -334,7 +334,6 @@ def hepsiBuradaTam():
         
         for result in results:
             product_name = result.h3.text
-            item["Name"] = product_name
             item["index"] = j
             j=j+1
             try:
@@ -354,77 +353,27 @@ def hepsiBuradaTam():
                     except NoSuchElementException:
                         print("Exception Handled")
                         continue
-                    
+                    for details in product_details:
+
+                        informations = details.find_all("tr")
+
+                        for info in informations:
+
+                            try:               
+                                label = info.find("th").text
+                                label=label.replace(" ", "")
+                                value = info.find("span").text
+                                detail[label]=value
+                                
+                            except AttributeError:
+                                continue
+                    item["Details"]=detail
                     try:
                         img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
                         item["Img"]= img_url
                     except NoSuchElementException:
                         print("Exception Handled")
                         continue
-                    try:
-                        İşletimSistemi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(19) > td > a").get_attribute("innerHTML")
-                        detail["İşletimSistemi"]= İşletimSistemi
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        BellekHızı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(1) > td > span").get_attribute("innerHTML")
-                        detail["BellekHızı"]= BellekHızı
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        CihazAğırlığı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(4) > td > span").get_attribute("innerHTML")
-                        detail["CihazAğırlığı"]= CihazAğırlığı
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        EkranKartı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(10) > td > a").get_attribute("innerHTML")
-                        detail["EkranKartı"]= EkranKartı
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        İşlemciNesli = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(16) > td > a").get_attribute("innerHTML")
-                        detail["İşlemciNesli"]= İşlemciNesli
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        İşlemci = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(18) > td > a").get_attribute("innerHTML")
-                        detail["İşlemci"]= İşlemci
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        Klavye = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(21) > td > span").get_attribute("innerHTML")
-                        detail["Klavye"]= Klavye
-                    except NoSuchElementException:
-                        print("Exception Handled")
-
-                    try:
-                        RamSistemBelleği = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(26) > td > a").get_attribute("innerHTML")
-                        detail["RamSistemBelleği"]= RamSistemBelleği
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        RamTipi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(27) > td > span").get_attribute("innerHTML")
-                        detail["RamTipi"]= RamTipi
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        Renk = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(28) > td > span").get_attribute("innerHTML")
-                        detail["Renk"]= Renk
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        SSDKapasitesi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(29) > td > a").get_attribute("innerHTML")
-                        detail["SSDKapasitesi"]= SSDKapasitesi
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    try:
-                        TemelİşlemciHızı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(30) > td > span").get_attribute("innerHTML")
-                        detail["TemelİşlemciHızı"]= TemelİşlemciHızı
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                    
-                    item["Details"]=detail
-
                 else:
                     print("Invalid url")
                     print(product_url)
@@ -433,6 +382,8 @@ def hepsiBuradaTam():
                 
             except AttributeError:
                 continue
+
+            item["Name"] = product_name
 
             mycollection.insert_one(item)
             item.clear()
