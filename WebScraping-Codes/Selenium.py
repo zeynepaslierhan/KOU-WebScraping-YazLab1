@@ -68,12 +68,9 @@ def hepsiBurada(product):
 
     browser = webdriver.Chrome(driver_path)
     browser.get("https://www.google.com/")
-    time.sleep(2)
     hepsiBurada_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
     hepsiBurada_veri_girisi.send_keys(name+" "+" site:hepsiburada.com")
-    time.sleep(2)
     hepsiBurada_veri_girisi.send_keys(Keys.ENTER)
-    time.sleep(25)
 
     try:
         hepsiBurada_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
@@ -303,9 +300,8 @@ def n11(product):
     except NoSuchElementException:
         print("Exception Handled")
 
-
 def hepsiBuradaTam():
-
+    mycollection.delete_many({})
     headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0'}
 
@@ -346,7 +342,7 @@ def hepsiBuradaTam():
                     try:
                         img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
                         browser.get(img_url)
-                        img_loc = "static/img/PC/{0}.png".format(j)
+                        img_loc = "static/img/PC/{0}.jpg".format(j)
                         j=j+1
                         browser.save_screenshot(img_loc)
                         item["Img"]= img_loc
@@ -385,8 +381,7 @@ def hepsiBuradaTam():
             mycollection.insert_one(item)
             item.clear()
 
-
-hepsiBuradaTam()
+#hepsiBuradaTam()
 for product in mycollection.find({}):
     hepsiBurada(product)
     teknosa(product)

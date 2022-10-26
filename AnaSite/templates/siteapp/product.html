@@ -7,31 +7,28 @@
   <!--Main layout-->
 
   <main class="mt-5 pt-4">
+    {%for bilgisayar in product%}
     <div class="container dark-grey-text mt-5">
 
       <!--Grid row-->
       
       <div class="row wow fadeIn">
         
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <img src="{{bilgisayar.Img}}" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
+        <picture itemprop="image" index="0" data-zoomable="False" data-cloudzoom="zoomImage: '{{Bilgisayar.Img}}'" data-bind="css: {'hidden': !isAdultShow}">
+          <source class="product-image" srcset="{{Bilgisayar.Img}} 1x" type="image/jpeg">
+          <img width="599" height="599" itemprop="image" class="product-image" data-zoomable="False" data-cloudzoom="zoomImage: '{{Bilgisayar.Img}}'" src="{{Bilgisayar.Img}}" alt="{{Bilgisayar.Name}}" title="{{Bilgisayar.Name}}">
+        </picture>
 
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
           <!--Content-->
           <div class="p-4">
-            {%for bilgisayar in product%}
+            
 
 
             <p class="lead font-weight-bold">
                 <h2>{{bilgisayar.Name}}</h2>
-                </p>
 
             <h4 class="font-weight-normal blue-text">    
               <span>
@@ -58,7 +55,6 @@
     
               </span>
             </h4>
-            {%endfor%}
           </div>
           <!--Content-->
 
@@ -78,9 +74,204 @@
 
           <h4 class="my-4 h4">Detaylı Bilgiler</h4>
 
-          <p>TEST TEST TEST 
-            TEST TEST TEST
-          </p>
+          <table class="data-list tech-spec">
+            <caption></caption>
+            <tbody>
+                    <tr>
+                        <th>Bellek Hızı</th>
+                        <td>
+                                <span>{{bilgisayar.BellekHızı}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bellek Yuvası</th>
+                        <td>
+                                <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bluetooth Özelliği</th>
+                        <td>
+                                <span>{{bilgisayar.BluetoothÖzelliği}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Cihaz Ağırlığı</th>
+                        <td>
+                                <span>{{bilgisayar.BluetoothÖzelliği}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Dokunmatik Ekran</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ekran Boyutu</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ekran Kartı Bellek Tipi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ekran Kartı Hafızası</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ekran Kartı Tipi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ekran Kartı</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ekran Panel Tipi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>eMMC Kapasitesi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Harddisk Kapasitesi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>HDMI</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>İşlemci Cache</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>İşlemci Nesli</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>İşlemci Tipi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>İşlemci</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>İşletim Sistemi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Kart Okuyucu</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Klavye</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Maksimum İşlemci Hızı</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Max Ekran Çözünürlüğü</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Optik Sürücü</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Parmak İzi Okuyucu</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ram (Sistem Belleği)</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ram Tipi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Renk</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>SSD Kapasitesi</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Temel İşlemci Hızı</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Ürün Modeli</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Webcam</th>
+                        <td>
+                          <span>{{bilgisayar.BellekYuvası}}</span>
+                        </td>
+                    </tr>
+    
+            </tbody>
+        </table>
 
         </div>
         <!--Grid column-->
@@ -89,6 +280,8 @@
       <!--Grid row-->
 
     </div>
+    
+    {%endfor%}
   </main>
   <!--Main layout-->
 

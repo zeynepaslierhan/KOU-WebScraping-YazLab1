@@ -25,7 +25,7 @@ def pc_list(request):
                   {'bilg_list': bilg_list})
     
 def product_page(request,name):
-    product = mycollection.find({"Name": name})
+    product = mycollection.find_one({"Name": name})
     return render(request, 'siteapp/product.html',
                   {'product':product})
 

@@ -2,70 +2,61 @@
 {% load static %}
 
 {% block content %}
-    <h1>Bilgisayarlar</h1>
-    <br/>
-    <br/>
-    
-          <!--Section: Products v.3-->
-          
-          <section class="text-center mb-4">
+<h1>Bilgisayarlar</h1>
 
-            
-            <!--Grid row-->
-            <div class="row wow fadeIn">
-              {%for bilgisayar in bilg_list%}
-              <hr>
+<!--Section: Products v.3-->
 
-            <div class="row wow fadeIn">
+<section class="text-center mb-4">
 
-              <!--Grid column-->
-              <div class="col-md-6 mb-4">
-      
-                <img src="{{bilgisayar.Img}}" class="img-fluid" alt="">
-      
-              </div>
-              <hr>
-              <!--Grid column-->
-      
-              <!--Grid column-->
-              <div class="col-md-6 mb-4">
-      
-                <!--Content-->
-                <div class="p-4">
-      
-                  <h5 class="font-weight-normal blue-text">    
-                    <span>
-                      {%if bilgisayar.HepsiBurada.Mevcut %}
-                      <a href="{{bilgisayar.HepsiBurada.URL}}">Hepsiburada: {{bilgisayar.HepsiBurada.Price}}</a>
-                      {%endif%}
-                      <br/>
-                      {%if bilgisayar.teknosa.Mevcut %}
-                      <a href="{{bilgisayar.Teknosa.URL}}">Teknosa: {{bilgisayar.teknosa.Price}}</a>
-                      {%endif%}
-                      <br/>
-                      {%if bilgisayar.Amazon.Mevcut %}
-                      <a href="{{bilgisayar.Amazon.URL}}">Amazon: {{bilgisayar.Amazon.Price}}</a>
-                      {%endif%}
-                  </span>
-                  </h5>
-      
-                  <a href="{% url 'product_page' bilgisayar.Name %}" >
-                    <p class="lead font-weight-bold">
-                      <h6 style="color: black;">{{bilgisayar.Name}}</h6>
-                    </p>
-                  </a>
-                  
-                </div>
-                <!--Content-->
-              </div>
-              <!--Grid column-->
-              <hr>
-              {% endfor %} 
-            </div>
-           
-        </section>
-          <!--Section: Products v.3-->
+  <hr>
+  <!--Grid row-->
+  <div class="row wow fadeIn">
+    {%for bilgisayar in bilg_list%}
+
+
+    <div class="row wow fadeIn">
+      <div class="col-md-6 mb-4">
+        <picture data-zoomable="False" data-cloudzoom="zoomImage: '{{bilgisayar.Img}}'">
+          <source class="product-image" srcset="{{bilgisayar.Img}} 1x" type="image/jpeg">
+          <img width="400" height="300" itemprop="image" class="product-image" data-zoomable="False" data-cloudzoom="zoomImage: '{{bilgisayar.Img}}'" src="{{bilgisayar.Img}}" alt="{{Bilgisayar.Name}}" title="{{Bilgisayar.Name}}">
+        </picture>
+      </div>
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <!--Content-->
+        <div class="p-4">
+
+          <h5 class="font-weight-normal blue-text">
+            <span>
+              {%if bilgisayar.HepsiBurada.Mevcut %}
+              <a href="{{bilgisayar.HepsiBurada.URL}}">Hepsiburada: {{bilgisayar.HepsiBurada.Price}}</a>
+              {%endif%}
+              <br />
+              {%if bilgisayar.teknosa.Mevcut %}
+              <a href="{{bilgisayar.Teknosa.URL}}">Teknosa: {{bilgisayar.teknosa.Price}}</a>
+              {%endif%}
+              <br />
+              {%if bilgisayar.Amazon.Mevcut %}
+              <a href="{{bilgisayar.Amazon.URL}}">Amazon: {{bilgisayar.Amazon.Price}}</a>
+              {%endif%}
+            </span>
+          </h5>
+
+          <a href="{% url 'product_page' bilgisayar.Name %}">
+            <p class="lead font-weight-bold">
+              <h6 style="color: black;">{{bilgisayar.Name}}</h6>
+            </p>
+          </a>
+
+        </div>
+        <!--Content-->
+      </div>
+      <!--Grid column-->
+      {% endfor %}
+    </div>
+
+</section>
+<!--Section: Products v.3-->
 
 {% endblock %}
-
-
