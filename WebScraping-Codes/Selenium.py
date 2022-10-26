@@ -312,7 +312,7 @@ def hepsiBuradaTam():
     #veriyi tutan dict
     item = {}
     j=0
-    for i in range(1,2):
+    for i in range(4,10):
         
         
         print('Processing {0}...'.format(base_url.format(i)))
@@ -389,11 +389,18 @@ def hepsiBuradaTam():
             item.clear()
 
 hepsiBuradaTam()
+time.sleep(60)
+a=0
 for product in mycollection.find({}):
-    hepsiBurada(product)
-    teknosa(product)
-    amazon(product)
-    vatanBilgisayar(product)
-    cicekSepetiExtra(product)
-    trendyol(product)
-    n11(product)
+    a=a+1
+    if a>=6:
+        a=0
+        time.sleep(120)
+    else:
+        hepsiBurada(product)
+        teknosa(product)
+        amazon(product)
+        vatanBilgisayar(product)
+        cicekSepetiExtra(product)
+        trendyol(product)
+        n11(product)

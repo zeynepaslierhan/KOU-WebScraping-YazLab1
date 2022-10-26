@@ -2279,64 +2279,12 @@
           <div class="ppts_v8">
             <table class="ppt" border="1">
               <tbody>
+                {%for key in bilgisayar.Details %}
                 <tr>
-                  <td>Marka</td>
-                  <td>: &nbsp;{{bilgisayar.Details.Marka}} </td>
+                  <td>{{key}}</td>
+                  <td>: &nbsp; {{key.}}</td>
                 </tr>
-
-                <tr>
-                  <td>İşletim Sistemi</td>
-                  <td>: &nbsp;{{bilgisayar.Details.İşletimSistemi}} </td>
-                </tr>
-
-                <tr>
-                  <td>Bellek Hızı</td>
-                  <td>: &nbsp;{{bilgisayar.Details.BellekHızı}} </td>
-                </tr>
-
-                <tr>
-                  <td>Cihaz Ağırlığı</td>
-                  <td>: &nbsp;{{bilgisayar.Details.CihazAğırlığı}} </td>
-                </tr>
-
-                <tr>
-                  <td>Ekran Kartı</td>
-                  <td>: &nbsp;{{bilgisayar.Details.EkranKartı}} </td>
-                </tr>
-                <tr>
-                  <td>İşlemci Nesli</td>
-                  <td>: &nbsp;{{bilgisayar.Details.İşlemciNesli}} </td>
-                </tr>
-                <tr>
-                  <td>İşlemci</td>
-                  <td>: &nbsp;{{bilgisayar.Details.İşlemci}} </td>
-                </tr>
-                <tr>
-                  <td>Klavye</td>
-                  <td>: &nbsp;{{bilgisayar.Details.Klavye}} </td>
-                </tr>
-                <tr>
-                  <td>Ram Sistem Belleği</td>
-                  <td>: &nbsp;{{bilgisayar.Details.RamSistemBelleği}} </td>
-                </tr>
-                <tr>
-                  <td>Ram Tipi</td>
-                  <td>: &nbsp;{{bilgisayar.Details.RamTipi}} </td>
-                </tr>
-
-                <tr>
-                  <td>Temel İşlemci Hızı</td>
-                  <td>: &nbsp;{{bilgisayar.Details.TemelİşlemciHızı}} </td>
-                </tr>
-                <tr>
-                  <td>Renk</td>
-                  <td>: &nbsp;{{bilgisayar.Details.Renk}} </td>
-                </tr>
-                <tr>
-                  <td>SSD Kapasitesi</td>
-                  <td>: &nbsp;{{bilgisayar.Details.SSDKapasitesi}} </td>
-                </tr>
-                
+                {% endfor %}
               </tbody>
             </table>
           </div>
