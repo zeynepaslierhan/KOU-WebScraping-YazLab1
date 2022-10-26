@@ -341,13 +341,12 @@ def hepsiBuradaTam():
                 product_url = 'https://www.hepsiburada.com'+result.a.get("href")
                 valid=validators.url(product_url)
                 if valid==True:
-                    item["product_url"]= product_url
                     browser = webdriver.Chrome(driver_path)
                     browser.get(product_url)
                     try:
                         img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
                         browser.get(img_url)
-                        img_loc = "C:/Users/zerha/Downloads/{0}.png".format(j)
+                        img_loc = "static/img/PC/{0}.png".format(j)
                         j=j+1
                         browser.save_screenshot(img_loc)
                         item["Img"]= img_loc
@@ -387,7 +386,7 @@ def hepsiBuradaTam():
             item.clear()
 
 
-#hepsiBuradaTam()
+hepsiBuradaTam()
 for product in mycollection.find({}):
     hepsiBurada(product)
     teknosa(product)
