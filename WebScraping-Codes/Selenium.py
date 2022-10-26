@@ -356,24 +356,67 @@ def hepsiBuradaTam():
                 product_soup = BeautifulSoup(product_response.content, 'html.parser')
 
                 product_details = product_soup.find_all("table",{"class":"data-list tech-spec"})
-
+                detail={}
                 for details in product_details:
 
                     informations = details.find_all("tr")
 
+                    
                     for info in informations:
 
-                        try:               
+                        try:
                             label = info.find("th").text
-                            value = info.find("span").text
+                            if label == "Bellek Hızı":              
+                                value = info.find("span").text
+                                detail[label]=value
+                            elif label == "Cihaz Ağırlığı":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "Ekran Boyutu":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "Ekran Kartı":              
+                                value = info.find("span").text
+                                detail[label]=value
+                            elif label == "İşlemci Nesli":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "İşlemci Tipi":              
+                                value = info.find("span").text
+                                detail[label]=value
+                            elif label == "İşlemci":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "İşletim Sistemi":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "Klavye":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "Ram (Sistem Belleği)":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "Ram Tipi":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "Renk":              
+                                value = info.find("span").text
+                                detail[label]=value 
+                            elif label == "SSD Kapasitesi":              
+                                value = info.find("span").text
+                                detail[label]=value
+                            elif label == "Temel İşlemci Hızı":              
+                                value = info.find("span").text
+                                detail[label]=value
 
-                            item[label]=value            
                         except AttributeError:
                          continue
+                    item["Details"]=detail
             except AttributeError:
                 continue
 
             item["Name"] = product_name
+
             mycollection.insert_one(item)
             item.clear()
 
