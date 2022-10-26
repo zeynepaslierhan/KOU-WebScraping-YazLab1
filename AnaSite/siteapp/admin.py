@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import *
-from bson.objectid import ObjectId
+import pymongo
+
+# Create your views here.
 
 # Register your models here.
 

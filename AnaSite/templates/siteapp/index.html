@@ -9,15 +9,13 @@
           <!--Section: Products v.3-->
           
           <section class="text-center mb-4">
-            {%for bilgisayar in bilg_list%}
-            <hr>
+
             
             <!--Grid row-->
             <div class="row wow fadeIn">
+              {%for bilgisayar in bilg_list%}
+              <hr>
 
-            
-              
-    
             <div class="row wow fadeIn">
 
               <!--Grid column-->
@@ -62,8 +60,9 @@
               </div>
               <!--Grid column-->
               <hr>
+              {% endfor %} 
             </div>
-            {% endfor %} 
+           
         </section>
           <!--Section: Products v.3-->
 

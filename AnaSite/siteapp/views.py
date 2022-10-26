@@ -28,3 +28,5 @@ def product_page(request,name):
     product = mycollection.find({"Name": name})
     return render(request, 'siteapp/product.html',
                   {'product':product})
+
+

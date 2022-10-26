@@ -5,13 +5,14 @@
 {% block content %}
 
   <!--Main layout-->
-  {%for bilgisayar in product%}
+
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
 
       <!--Grid row-->
+      
       <div class="row wow fadeIn">
-
+        
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
@@ -25,7 +26,7 @@
 
           <!--Content-->
           <div class="p-4">
-
+            {%for bilgisayar in product%}
 
 
             <p class="lead font-weight-bold">
@@ -57,7 +58,7 @@
     
               </span>
             </h4>
-
+            {%endfor%}
           </div>
           <!--Content-->
 
@@ -83,13 +84,13 @@
 
         </div>
         <!--Grid column-->
-
+        
       </div>
       <!--Grid row-->
 
     </div>
   </main>
   <!--Main layout-->
-  {%endfor%}
+
   
 {% endblock %}
