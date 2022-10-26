@@ -301,6 +301,7 @@ def n11(product):
         print("Exception Handled")
 
 def hepsiBuradaTam():
+
     mycollection.delete_many({})
     headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0'}
@@ -312,7 +313,8 @@ def hepsiBuradaTam():
     item = {}
     j=0
     for i in range(1,2):
-            
+        
+        
         print('Processing {0}...'.format(base_url.format(i)))
         print("-------------")    
 
@@ -329,89 +331,117 @@ def hepsiBuradaTam():
         print(response)
         soup = BeautifulSoup(response.content, 'html.parser')
         results = soup.find_all('li',{'class': 'productListContent-zAP0Y5msy8OHn5z7T_K_'})
-
+        
         for result in results:
             product_name = result.h3.text
-            
+            item["index"] = j
+            j=j+1
             try:
                 product_url = 'https://www.hepsiburada.com'+result.a.get("href")
                 valid=validators.url(product_url)
                 if valid==True:
+                    detail={}
                     browser = webdriver.Chrome(driver_path)
                     browser.get(product_url)
+
+                    #ilgili veriler
+                    try:
+                        Marka = browser.find_element("css selector","body > div.wrapper > main > div.product-detail-module > section.detail-main > div.container.contain-lg-4.contain-md-4.contain-sm-1.fluid > div > div.productDetailRight.col.lg-2.md-2.sm-1.grid-demo-fluid > div.product-information.col.lg-5.sm-1 > span > a").get_attribute("innerHTML")
+                        detail["Marka"]= Marka
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        İşletimSistemi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(19) > td > a").get_attribute("innerHTML")
+                        detail["İşletimSistemi"]= İşletimSistemi
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        BellekHızı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(1) > td > span").get_attribute("innerHTML")
+                        detail["BellekHızı"]= BellekHızı
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        CihazAğırlığı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(4) > td > span").get_attribute("innerHTML")
+                        detail["CihazAğırlığı"]= CihazAğırlığı
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        EkranKartı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(10) > td > a").get_attribute("innerHTML")
+                        detail["EkranKartı"]= EkranKartı
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+
+                    try:
+                        İşlemciNesli = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(16) > td > a").get_attribute("innerHTML")
+                        detail["İşlemciNesli"]= İşlemciNesli
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        İşlemci = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(18) > td > a").get_attribute("innerHTML")
+                        detail["İşlemci"]= İşlemci
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        Klavye = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(21) > td > span").get_attribute("innerHTML")
+                        detail["Klavye"]= Klavye
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+
+                    try:
+                        RamSistemBelleği = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(26) > td > a").get_attribute("innerHTML")
+                        detail["RamSistemBelleği"]= RamSistemBelleği
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        RamTipi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(27) > td > span").get_attribute("innerHTML")
+                        detail["RamTipi"]= RamTipi
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        Renk = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(28) > td > span").get_attribute("innerHTML")
+                        detail["Renk"]= Renk
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+
+                    try:
+                        SSDKapasitesi = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(29) > td > a").get_attribute("innerHTML")
+                        detail["SSDKapasitesi"]= SSDKapasitesi
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    try:
+                        TemelİşlemciHızı = browser.find_element("css selector","#productTechSpecContainer > table:nth-child(2) > tbody > tr:nth-child(30) > td > span").get_attribute("innerHTML")
+                        detail["TemelİşlemciHızı"]= TemelİşlemciHızı
+                    except NoSuchElementException:
+                        print("Exception Handled")
+                        continue
+                    
+                    
+                    item["Details"]=detail
+
                     try:
                         img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
                         item["Img"]= img_url
                     except NoSuchElementException:
                         print("Exception Handled")
                         continue
-                    
                 else:
                     print("Invalid url")
                     print(product_url)
                     continue    
 
-                product_response = requests.get(product_url, headers=headers)
-                            
-                product_soup = BeautifulSoup(product_response.content, 'html.parser')
-
-                product_details = product_soup.find_all("table",{"class":"data-list tech-spec"})
-                detail={}
-                for details in product_details:
-
-                    informations = details.find_all("tr")
-
-                    
-                    for info in informations:
-
-                        try:
-                            label = info.find("th").text
-                            if label == "Bellek Hızı":              
-                                value = info.find("span").text
-                                detail[label]=value
-                            elif label == "Cihaz Ağırlığı":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "Ekran Boyutu":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "Ekran Kartı":              
-                                value = info.find("span").text
-                                detail[label]=value
-                            elif label == "İşlemci Nesli":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "İşlemci Tipi":              
-                                value = info.find("span").text
-                                detail[label]=value
-                            elif label == "İşlemci":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "İşletim Sistemi":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "Klavye":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "Ram (Sistem Belleği)":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "Ram Tipi":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "Renk":              
-                                value = info.find("span").text
-                                detail[label]=value 
-                            elif label == "SSD Kapasitesi":              
-                                value = info.find("span").text
-                                detail[label]=value
-                            elif label == "Temel İşlemci Hızı":              
-                                value = info.find("span").text
-                                detail[label]=value
-
-                        except AttributeError:
-                         continue
-                    item["Details"]=detail
+                
             except AttributeError:
                 continue
 
