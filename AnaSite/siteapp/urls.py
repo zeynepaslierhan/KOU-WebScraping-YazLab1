@@ -6,6 +6,6 @@ from bson.objectid import ObjectId
 
 urlpatterns = [
     path('', views.pc_list, name='list-pc'),
-    path('<str:name>/', views.product_page, name='product_page'),
+    path('<str:name>/', views.product_page, name='product_page')
 
 ]

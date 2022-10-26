@@ -2395,13 +2395,17 @@
       {%for bilgisayar in bilg_list%}
 
 
-      <li><a class="pw_v8" href="{%url 'product_page' bilgisayar.Name %}">
-          <figure class="iw_v8"><img src="{{bilgisayar.Img}}">
+      <li>
+        <a class="pw_v8" href="{%url 'product_page' bilgisayar.Name %}">
+          <figure class="iw_v8"><img  src="{{bilgisayar.Img}}">
           </figure>
           <h3 class="pn_v8">{{bilgisayar.Name}}
           </h3></i>
         </a>
+
         </br>
+
+
         <div class="p_w_v8">
 
           <ul>

@@ -341,11 +341,7 @@ def hepsiBuradaTam():
                     browser.get(product_url)
                     try:
                         img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
-                        browser.get(img_url)
-                        img_loc = "static/img/PC/{0}.jpg".format(j)
-                        j=j+1
-                        browser.save_screenshot(img_loc)
-                        item["Img"]= img_loc
+                        item["Img"]= img_url
                     except NoSuchElementException:
                         print("Exception Handled")
                         continue
@@ -381,7 +377,7 @@ def hepsiBuradaTam():
             mycollection.insert_one(item)
             item.clear()
 
-#hepsiBuradaTam()
+hepsiBuradaTam()
 for product in mycollection.find({}):
     hepsiBurada(product)
     teknosa(product)

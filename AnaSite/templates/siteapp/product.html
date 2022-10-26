@@ -2225,19 +2225,19 @@
   <script
     type="text/javascript">window.LL = function () { var t = "data-src"; return this.sD = -400, this.GWH = function () { return window.innerHeight || document.documentElement.clientHeight }, this.GWW = function () { return window.innerWidth || document.documentElement.clientWidth }, this.DC4DI = function () { if (!this.loadedAllImages && this.initialLeft != this.getBoundingClientRect().left) { var t = this.LLList; if (t && t.length) { for (var i, e = 0; e < t.length; e++)(i = t[e].img).c == this && (loadImage(i), t.splice(e, 1), e--); this.loadedAllImages = !0 } } }, this.DC = function () { var t = this.List; if (t && t.length) for (var i, e = this.GWW(), n = this.GWH(), s = 0; s < t.length; s++)i = t[s], checkImg(i.img, this.sD, e, n, i.img.c.left, i.img.c.width).isVisible && (this.loadImage(i.img), t.splice(s, 1), s--) }, this.DDC = function () { this.DDCTimer && clearTimeout(this.DDCTimer), this.DDCTimer = window.setTimeout(this.DC, 50) }, this.isVisible = function (t, i, e, n, s, o, r) { return t + e < s && (o ? i >= o && i <= o + r : i < n) }, this.checkImg = function (t, i, e, n, s, o) { var r = t.getBoundingClientRect(); return { isVisible: this.isVisible(r.top, r.left, i, e, n, s, o), top: r.top, left: r.left } }, this.loadImage = function (i) { var e = i.getAttribute(t), n = new Image; n.src = e, n.onload = function () { "src" == i.llType ? (i.src = this.src, i.style.cssText += ";background:none;opacity:1;min-height:unset;min-width:unset;") : i.style.cssText += ";background:url('" + this.src + "') center center no-repeat;background-size:contain;opacity:1;", i.removeAttribute(t), "function" == typeof ADL4_WritePRImpression && ADL4_WritePRImpression(i) }, n.onerror = function () { i.style.cssText += ";background-image:url(//cdn.akakce.com/t.gif); background-color:#f7f7f7;border-radius:4px;opacity:1;" } }, this.Init = function (i, e, n) { void 0 === e && (e = "src"); var s = document.getElementById(i); if (s) { if (n && n.hheiha) { s.hheiha = !0; var o = s.getBoundingClientRect(); s.left = o.left, s.width = o.width } for (var r, c = s.getElementsByTagName("IMG"), h = this.GWW(), l = this.GWH(), d = 0; d < c.length; d++) { if ((r = c[d]).c = s, r.getAttribute(t)) { if (r.isProcessed) continue; r.llType = e, imgInfo = checkImg(r, this.sD, h, l, s.left, s.width), imgInfo.isVisible ? this.loadImage(r) : (this.List || (this.List = new Array), this.List.push({ img: r, top: imgInfo.top, left: imgInfo.left, id: i }), r.style.cssText += "background:url(//cdn.akakce.com/i/l42.gif) no-repeat center center;opacity:.7;min-width:18px;min-height:18px;", s.hheiha && !s.deferredCheckSet && (s.initialLeft = s.left, s.addEventListener("mouseup", DC4DI, !0), s.addEventListener("touchend", DC4DI, !0), s.deferredCheckSet = !0, s.DC4DI = DC4DI)), r.isProcessed = !0 } else r.onload = function () { var t = this; setTimeout(function () { "function" == typeof ADL4_WritePRImpression && ADL4_WritePRImpression(t) }, 500) }; s.LLList = this.List } } }, this }(); var W_ = window, L_ = W_.LL; W_.addEventListener("scroll", function () { L_.DC() }, !0), W_.addEventListener("resize", function () { L_.DDC() }, !0);</script>
   <main>
+
+    {%for bilgisayar in product %}
     <div class="rw_v8">
       <div id="pd_v8" class="pd_v8">
         <div class="pdt_v8">
-          <h1>Acer Extensa EX215-54G NX.EGHEY.001 i5-1135G7 8 GB 512 GB SSD MX350 15.6" Full HD Notebook</h1>
+          <h1>{{bilgisayar.Name}}</h1>
         </div>
         <div id="PI_v8" class="pdi_v8"><a class="img_w"
-            title="Acer Extensa EX215-54G NX.EGHEY.001 i5-1135G7 8 GB 512 GB SSD MX350 15.6&quot; Full HD Notebook"
-            href="//cdn.akakce.com/z/acer/acer-extensa-ex215-54g-dizustu-bilgisayar-15-6-fhd-intel-i5-1135g7-8gb-ram-512gb-ssd-nvidia-geforce-mx350-harici-2gb-ekran-karti-linux-isletim-sistemi.jpg"><img
-              alt="Acer Extensa EX215-54G NX.EGHEY.001 i5-1135G7 8 GB 512 GB SSD MX350 15.6&quot; Full HD Notebook"
-              itemprop="image"
+          ><img
+             itemprop="image"
               onerror="var p = this.parentNode.parentNode;p.className=(p.className?p.className+' ':'')+'nopi';"
               onload="var p = this.parentNode.parentNode;p.classList.remove('nopi');"
-              src="//cdn.akakce.com/z/acer/acer-extensa-ex215-54g-dizustu-bilgisayar-15-6-fhd-intel-i5-1135g7-8gb-ram-512gb-ssd-nvidia-geforce-mx350-harici-2gb-ekran-karti-linux-isletim-sistemi.jpg"></a>
+              src="{{bilgisayar.Img}}"></a>
         </div>
         <div class="bb_w"><span class="pb_v8"><span class="pt_v8">10.599<i>,00 TL</i></span></span><a
             href="/c/?z=125&amp;v=11707&amp;s=1&amp;p=1759716992&amp;c=20155&amp;g=61576483&amp;f=%2Fr%2F%3Fpr%3D1759716992%26vd%3D11707%26pg%3D61576483"
@@ -2369,6 +2369,7 @@
         </div>
       </section>
     </div>
+    {% endfor %}
 </body>
 
 </html>
