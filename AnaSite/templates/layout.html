@@ -1,0 +1,274 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>YazLab</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'https://use.fontawesome.com/releases/v5.11.2/css/all.css' %}">
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+
+
+    <style>
+        .button {
+          border: 1px solid black;
+          color: black;
+          padding: 6px 13px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+    </style>
+
+    <style>
+        /* Customize the label (the container) */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default checkbox */
+            .container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+
+    <style>
+
+            .slider p {         @* Yazıları ayarlar *@
+            font-size:20px;
+            font-weight:600;
+            font-family: Open Sans;
+            color: black;
+            }
+            .slider input[type="range"] {               @* Görüntüyü ayarlar *@
+            -webkit-appearance:none !important;
+            width:180px;
+            height:3px;
+            background: black;
+            }
+            .slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance:none !important;
+            width:25px;
+            height:25px;
+            background:#fcfcfc;
+            border:2px solid black;
+            border-radius:50%;
+            cursor:pointer;
+            }
+            .slider input[type="range"]::-webkit-slider-thumb:hover {           @* Yuvarlağın içinin rengini ayarlar *@
+            background:black;
+        }
+    </style>
+
+    <style>
+        .w3-sidebar a {
+            font-family: "Roboto", sans-serif
+        }
+
+        body, h1, h2, h3, h4, h5, h6, .w3-wide {
+            font-family: "Montserrat", sans-serif;
+        }
+    </style>
+
+</head>
+<body class="w3-content" style="max-width:1200px">
+
+    <!-- Sidebar/menu -->
+
+
+    <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+        <div class="w3-container w3-display-container w3-padding-16">
+            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+            <a class='btn btn-link'  href='http://127.0.0.1:8000/'><h3>SMURFS</h3></a>
+            
+            <!-- <h3 class="w3-wide"><b>SMURFS</b></h3> -->
+
+
+        </div>
+
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+
+            <div class="slider">
+                <input type="range" min="0" max="100" value="10" oninput="rangeValue.innerText =this.value">
+                <p id="rangeValue">10</p>
+            </div>
+
+
+
+            <label class="container">
+                One
+                <input type="checkbox" checked="checked">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                Two
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                Three
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+                Four
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+        </div>
+    </nav>
+
+    <!-- Top menu on small screens -->
+    <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+        <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    </header>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+ 
+
+    {% include 'partials/partial_arama.html' %}
+    {% include 'partials/partial_sıralama.html' %}
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="w3-main" style="margin-left:300px">
+
+            {% block content %}
+            
+            {% endblock %}
+
+    </div>
+
+      <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+    <script>
+        // Accordion
+        function myAccFunc() {
+            var x = document.getElementById("demoAcc");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        // Click on the "Jeans" link on page load to open the accordion for demo purposes
+        document.getElementById("myBtn").click();
+
+
+        // Open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

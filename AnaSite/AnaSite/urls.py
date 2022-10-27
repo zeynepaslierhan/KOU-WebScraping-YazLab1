@@ -20,7 +20,13 @@ from django.urls import path,include
 # http://127.0.0.1:8000/
 
 urlpatterns = [                 # Girilen website urllerine pathler tanımlandı ve views.pye'ye geçildi.
-    
-    path('',include('siteapp.urls')),       # siteapp'inin urlsini ekler. Başka bir url için '' içerisine o url'nin admin/ gibi ismi yazılmalıdır.
+               
     path('admin/', admin.site.urls),
+    path('',include('siteapp.urls')),       # siteapp'inin urlsini ekler. Başka bir url için '' içerisine o url'nin admin/ gibi ismi yazılmalıdır.
+    
 ]
+
+admin.site.site_header = "SMURFS Admin"
+admin.site.site_title = "SMURFS"
+admin.site.index_title = "CRUD Operations"
+
