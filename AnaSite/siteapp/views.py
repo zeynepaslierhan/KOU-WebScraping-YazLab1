@@ -33,5 +33,15 @@ def productsList_byBrand(request,brand):
     bilg_list = mycollection.aggregate([{"$match": {"Marka":brand}}])
     return render(request, 'siteapp/index.html',{'bilg_list':bilg_list})
 
-
+def productsList_byWeb(request,web):
+    item={}
+    i = 0
+    products = mycollection.find({})
+    if web == "Amazon":
+        for product in products:
+            if product['AmazonPrice'] is not None:
+               item[i]=product
+               i=i+1
+    
+    return render(request, 'siteapp/index.html',item)
 
