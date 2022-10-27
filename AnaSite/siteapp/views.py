@@ -33,5 +33,7 @@ def productsList_byBrand(request,brand):
     bilg_list = mycollection.aggregate([{"$match": {"Marka":brand}}])
     return render(request, 'siteapp/index.html',{'bilg_list':bilg_list})
 
-
+def productsList_byWeb(request,web):
+    bilg_list = mycollection.aggregate([{"$match": {"Marka":web}}])
+    return render(request, 'siteapp/index.html',{'bilg_list':bilg_list})
 
