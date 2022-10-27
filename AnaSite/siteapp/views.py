@@ -11,7 +11,7 @@ myclient = pymongo.MongoClient("mongodb://zeynep:20012022@ac-akv12vk-shard-00-00
 mydb = myclient["Bilgisayar"]
 
 # Bilgisayar Veritabanındaki Amazon koleksiyonuna erişim sağladık
-mycollection= mydb["Products"]
+mycollection= mydb["siteapp_ürün"]
 
 def index(request):                                         #urls'de tanımlanan pathlerin html dosyalarıyla bağlantısı sağlandı.
     
@@ -28,5 +28,11 @@ def product_page(request,index):
     product = mycollection.find({ "index" : index})
     return render(request, 'siteapp/product.html',
                   {'product':product})
+
+def productsList_byBrand(request,brand):
+    products = mycollection.find({ "Marka" : brand})
+    return render(request, 'siteapp/index.html',
+                  {'products':products})
+
 
 

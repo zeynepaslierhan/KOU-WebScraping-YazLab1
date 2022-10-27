@@ -22,6 +22,7 @@ class MyModelModelAdmin(ExtraButtonsMixin, admin.ModelAdmin):
     def WebScraping(self, request):
         self.message_user(request, 'Web Scraping başlatılıyor')
         WebScraping.VerileriKompleDeğiştirme()
+        VeriAktarımı.VeriAktar()
         # Optional: returns HttpResponse
         return HttpResponseRedirectToReferrer(request)
     
@@ -32,6 +33,7 @@ class MyModelModelAdmin(ExtraButtonsMixin, admin.ModelAdmin):
     def Güncelleme(self, request):
         self.message_user(request, 'Fiyat Güncellemesi başlatılıyor')
         WebScraping.KayıtlıVerilerinFiyatlarınıGüncelleme()
+        VeriAktarımı.VeriAktar()
         # Optional: returns HttpResponse
         return HttpResponseRedirectToReferrer(request)
     
