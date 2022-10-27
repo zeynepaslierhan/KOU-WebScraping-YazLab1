@@ -59,23 +59,23 @@ Sayfalar:
     python manage.py startapp appismi // oluşturulan app aşağıdaki gibi, settings.py içerisindeki installed_apps klasörüne yazılmalıdır.
     ```
     
-    ![Untitled](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/Untitled.png)
+    ![Untitled](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/Untitled.png)
     
-    ![database connection.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/database_connection.png)
+    ![database connection.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/database_connection.png)
     
 3. Web sayfasının URL’leri tanımlanır.
     
-    ![url_proje.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/url_proje.png)
+    ![url_proje.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/url_proje.png)
     
 4. Html bağlantı işlemleri ve sayfaya yansıtılması
     1. Tanımlanan url’ye html dosyalarının bağlanması için oluşturduğumuz app içindeki “views.py” dosyasına erişilir ve request işlemleri oluşturulur.
     2. HTML sayfalarının database ile bağlantı kurması için gerekli bağlantılar görseldeki gibi yapılır (MongoDB)
         
-        ![views.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/views.png)
+        ![views.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/views.png)
         
 5.  Database’de kullanacağımız Table yapısı, app içerisindeki [models.py](http://models.py) içerisinde oluşturulur
     
-    ![model.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/model.png)
+    ![model.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/model.png)
     
     ```python
     def __str__(self):
@@ -87,45 +87,31 @@ Sayfalar:
 6. Oluşturulan Table yapısının ve diğer değişikliklerin database’e yansıtılması:
     1. migration oluşturma
         
-        ![makemigrations.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/makemigrations.png)
+        ![makemigrations.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/makemigrations.png)
         
         > “Not Implemented Error: Database objects do not implement truth value testing or bool().” hatası almamak için: `pip install pymongo==3.12.3`
         > 
     2. migration’ı gönderme
         
-        ![migrate.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/migrate.png)
+        ![migrate.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/migrate.png)
         
     3. Bunları denetlemek ve admin sayfasına erişmek için admin kullanıcısı oluşturma (migration oluşturmadan bu aşamaya geçmeyiniz!!!)
         
-        ![admincreatesuperuser.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/admincreatesuperuser.png)
+        ![admincreatesuperuser.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/admincreatesuperuser.png)
         
 7. Projeye ekleyeceğimiz HTML dosyaları okunurluk ve genel işleyiş kolaylığı açısından proje içerisine açılan “templates” klasörü içerisindeki “appismi” klasörüne yerleştirilir. Templates klasörünün projeye tanıtılması ise aşağıdaki görseldeki gibidir.
     
-    ![templates.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/templates.png)
+    ![templates.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/templates.png)
     
 8. HTML sayfalarına database üzerinden bilgi aktarabilmek için app içerisinde bulunan “urls.py” içerisine gerekli bağlantılar yapılır.
     
-    ![url_app.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/url_app.png)
+    ![url_app.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/url_app.png)
     
 9. Admin sayfasına bağlantı sağlamak ve düzenlemek için app içerisindeki “admin.py” içerisinde aşağıdaki işlemler uygulanır. (Gerektiği gibi kişiselleştirilebilir.)
     
-    ![adminpy.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/adminpy.png)
+    ![adminpy.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/adminpy.png)
     
-10. Projenin örnek görüntüleri:
-    
-    ![homepage.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/homepage.png)
-    
-    ![productpage.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/productpage.png)
-    
-    ![adminpage.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/adminpage.png)
-    
-    ![adminindex.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/adminindex.png)
-    
-    ![adminlisting.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/adminlisting.png)
-    
-11. Admin sayfasının özelleştirilebilmesi (Web scraping için buton eklenmesi vb.) için hazır bir app kullandık.
-    
-    ![adminbutton.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/adminbutton.png)
+10. Admin sayfasının özelleştirilebilmesi (Web scraping için buton eklenmesi vb.) için hazır bir app kullandık.
     
 
 ## Web Scraping
@@ -271,7 +257,7 @@ Semi-structured, json tipinde veriler varsa ve bu verilerin herhangi bir yerinde
 
 Çünkü MongoDB’nin çokça kendine ait nasıl kullanılacağını anlatan kaynaklara sahip. Diğer Doküman tabanlı NoSQL veritabanlarına göre daha çok kullanılıyor.Bu da proje geliştirirken daha kolay ilerlememizi sağladı.
 
-![Screenshot 2022-10-09 161909.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/Screenshot_2022-10-09_161909.png)
+![Screenshot 2022-10-09 161909.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/Screenshot_2022-10-09_161909.png)
 
 MongoDB, verileri kaydettiği dokumanları JSON benzeri Binary JSON (BSN) formatında saklar. MongoDB’de yaptığımız işlemlerin ilişkisel veritabanındaki karşılıkları:
 
@@ -361,7 +347,7 @@ mycollectionAmazon= mydb["Amazon"]
     
     ***Çıktısı:*** 
     
-    ![MongoDb Verilerine Erişme 1.png](README%20md%2012bb0b63b45b4f7b9dfdfea4a5f15e33/MongoDb_Verilerine_Erime_1.png)
+    ![MongoDb Verilerine Erişme 1.png](https://github.com/zeynepaslierhan/KOU-WebScraping-YazLab1/blob/main/img/MongoDb_Verilerine_Erime_1.png)
     
 3. **UPDATE**
     1. Verinin içerisinde **gömülü dokümantasyonu** güncelleme:
@@ -412,146 +398,7 @@ Aslında bu algoritmayı şu şekilde uyarlayabilirsiniz:
         1. Bu aşamada mongodb içerisinde kayıtlı verilerde amazon.mevcut bilgisi true olanla amazondan çekilen bilgileri karşılaştırılmalı. çakışma olursa bu veri atlanıp diğer veriye geçilmeli.
     3. gibi gibi bu şekilde azaltılarak devam ettirilebilir.
 
-```python
-def hepsiBuradaTam():
 
-    mycollection.delete_many({})
-    headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0'}
-
-    # Verileri çekeceğimiz sitenin ana url'si
-    base_url = 'https://www.hepsiburada.com/laptop-notebook-dizustu-bilgisayarlar-c-98?sayfa={0}'
-
-    #veriyi tutan dict
-    item = {}
-    j=0
-    for i in range(3,4):
-        
-        print('Processing {0}...'.format(base_url.format(i)))
-        print("-------------")  
-        time.sleep(0.50)  
-
-        valid=validators.url(base_url.format(i))
-                
-        if valid==True:
-            print("Valid url")
-        else:
-            print("Invalid url")
-            print(base_url.format(i))
-            continue
-        
-        response = requests.get(base_url.format(i), headers=headers)
-        print(response)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        results = soup.find_all('li',{'class': 'productListContent-zAP0Y5msy8OHn5z7T_K_'})
-        
-        for result in results:
-            product_name = result.h3.text
-            item["index"] = j
-            j=j+1
-            try:
-                product_url = 'https://www.hepsiburada.com'+result.a.get("href")
-                valid=validators.url(product_url)
-                if valid==True:
-                    
-                    product_response = requests.get(product_url, headers=headers)
-                    product_soup = BeautifulSoup(product_response.content, 'html.parser')
-                    product_details = product_soup.find_all("table",{"class":"data-list tech-spec"})
-                    detail={}
-                    browser = webdriver.Chrome(driver_path)
-                    time.sleep(0.50)
-                    browser.get(product_url)
-                    try:
-                        Marka = browser.find_element("css selector","body > div.wrapper > main > div.product-detail-module > section.detail-main > div.container.contain-lg-4.contain-md-4.contain-sm-1.fluid > div > div.productDetailRight.col.lg-2.md-2.sm-1.grid-demo-fluid > div.product-information.col.lg-5.sm-1 > span > a").get_attribute("innerHTML")
-                        detail["Marka"]= Marka
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                        continue
-                    for details in product_details:
-
-                        informations = details.find_all("tr")
-
-                        for info in informations:
-
-                            try:               
-                                label = info.find("th").text
-                                label=label.replace(" ", "")
-                                value = info.find("span").text
-                                detail[label]=value
-                                
-                            except AttributeError:
-                                continue
-                    item["Details"]=detail
-                    try:
-                        time.sleep(0.50)
-                        img_url = browser.find_element("css selector","#productDetailsCarousel > div.owl-stage-outer > div > div.owl-item.active > a > picture > img").get_attribute("src")
-                        item["Img"]= img_url
-                    except NoSuchElementException:
-                        print("Exception Handled")
-                        continue
-                    time.sleep(0.50)
-                    browser.close()
-                else:
-                    print("Invalid url")
-                    print(product_url)
-                    continue    
-
-                
-            except AttributeError:
-                continue
-
-            item["Name"] = product_name
-
-            mycollection.insert_one(item)
-            item.clear()
-```
-
-```python
-def cicekSepetiExtra(product):
-    
-    mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Mevcut": False}})
-    name = product['Name']
-    time.sleep(0.50)
-    browser = webdriver.Chrome(driver_path)
-    browser.get("https://www.google.com/")
-    time.sleep(0.50)
-
-    cicekSepetiExtra_veri_girisi = browser.find_element("css selector",".gLFyf.gsfi")
-    time.sleep(0.50)
-    cicekSepetiExtra_veri_girisi.send_keys(name+" "+" site:ciceksepeti.com")
-    time.sleep(0.50)
-    cicekSepetiExtra_veri_girisi.send_keys(Keys.ENTER)
-    time.sleep(0.50)
-    try:
-        cicekSepetiExtra_tikla = browser.find_element("css selector","#rso > div:nth-child(1) > div > div > div.Z26q7c.UK95Uc.jGGQ5e.VGXe8 > div > a")
-        time.sleep(0.50)
-        cicekSepetiExtra_tikla.click()
-        product_url = browser.current_url
-
-        if browser.find_element("css selector", "#productDetailSend > div > div > div:nth-child(2) > div.product__main-info-right.js-set-date-base-campaing-class > div.product__not-available.js-product-not-available.js-no-stock"):
-            print("Stok bitmiş")
-        else:
-            product_price = browser.find_element("css selector","#productDetailSend > div > div > div:nth-child(2) > div.product__main-info-right.js-set-date-base-campaing-class > div:nth-child(2) > div > div.product__info-wrapper--right > div.product__info__price.js-default-price > div.product__info__new-price.js-price-container > div.product__info__new-price__integer.js-price-integer")
-            product_priceText = product_price.get_attribute("innerHTML")
-            
-            
-            if product_price is not None:
-                mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Price": product_priceText}})
-                mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.URL": product_url}})
-                mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Mevcut": True}})
-           
-            try:
-                product_rating = browser.find_element("css selector","#productDetailSend > div > div > div:nth-child(2) > div.product__main-info-right.js-set-date-base-campaing-class.has-date-base-discount > div:nth-child(2) > div > div.product__info-wrapper--right > div.product__header-summary.js-product-header-summary > div > div > p")
-                product_ratingText = product_rating.get_attribute("innerHTML")
-                mycollection.update_one({ "Name" : product['Name'] },{ "$set": {"cicekSepetiExtra.Rating": product_ratingText}})
-                
-            except NoSuchElementException:
-                print("Exception Handled")
-    except NoSuchElementException:
-        print("Exception Handled")
-    time.sleep(0.50)
-    browser.close()
-```
 
 ## Kaynakça
 
