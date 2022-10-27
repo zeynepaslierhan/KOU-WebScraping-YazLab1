@@ -2407,6 +2407,22 @@
         </a>
         <div class="p_w_v8">
           <ul>
+
+            {% if bilgisayar.HepsiBuradaPrice != null %}
+            <li>
+              <a
+                href="/c/?z=134&amp;v=12088&amp;s=13&amp;p=1649036299&amp;c=17384&amp;g=2050865255&amp;f=%2Fr%2F%3Fpr%3D1649036299%26vd%3D12088%26pg%3D2050865255"
+                target="_blank" class="iC" title="Satıcıya Git" rel="nofollow">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.HepsiBuradaPrice}}</span>
+                </span>
+                <span class="l"><i><img alt="Hepsiburada"
+                      src="//cdn.akakce.com/im/m6/12088.svg"></i></span>
+              </a>
+            </li>
+            {% endif %}
+            
+            {%if bilgisayar.cicekSepetiExtraPrice != null %}
             <li>
               <a
                 href="/c/?z=134&amp;v=11281&amp;s=11&amp;p=1649036299&amp;c=15850&amp;g=61256005&amp;f=%2Fr%2F%3Fpr%3D1649036299%26vd%3D11281%26pg%3D61256005"
@@ -2419,7 +2435,9 @@
                     </span>
               </a>
             </li>
+            {% endif %}
 
+            {% if bilgisayar.TrendyolPrice != null %}
             <li>
               <a
                 href="/c/?z=134&amp;v=11707&amp;s=12&amp;p=1649036299&amp;c=20155&amp;g=57630765&amp;f=%2Fr%2F%3Fpr%3D1649036299%26vd%3D11707%26pg%3D57630765"
@@ -2431,18 +2449,9 @@
                       src="//cdn.akakce.com/im/m6/11707.svg"></i></span>
               </a>
             </li>
+            {% endif %}
 
-            <li>
-              <a
-                href="/c/?z=134&amp;v=12088&amp;s=13&amp;p=1649036299&amp;c=17384&amp;g=2050865255&amp;f=%2Fr%2F%3Fpr%3D1649036299%26vd%3D12088%26pg%3D2050865255"
-                target="_blank" class="iC" title="Satıcıya Git" rel="nofollow">
-                <span class="pb_v8">
-                  <span class="pt_v8">{{bilgisayar.HepsiBuradaPrice}}</span>
-                </span>
-                <span class="l"><i><img alt="Hepsiburada"
-                      src="//cdn.akakce.com/im/m6/12088.svg"></i></span>
-              </a>
-            </li>
+
 
           </ul>
         </div>
