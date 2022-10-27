@@ -1,3 +1,4 @@
+from tabnanny import verbose
 import pymongo
 
 # Cluster-WebScraping için bağlantı sağlandı. (username: zeyneperhan password: 20012022)
@@ -16,141 +17,141 @@ def VeriAktar():
 
     for product in mycollection.find({}):
 
-       item['Name'] = product['Name']
+      item['Name'] = product['Name']
 
-    item['Img'] = product['Img']
+      item['Img'] = product['Img']
 
-    item['index'] = product['index']
+      item['index'] = product['index']
 
-    details = product['Details']    
-    item['Marka'] = details['Marka']
-    item['BellekHızı'] = details['BellekHızı']
-    item['HDMI'] = details['HDMI']
-    item['EkranKartıBellekTipi'] = details['EkranKartıBellekTipi']
-    item['Renk'] = details['Renk']
-    item['RamTipi'] = details['RamTipi']
+      details = product['Details']    
+      item['Marka'] = details['Marka']
+      item['BellekHızı'] = details['BellekHızı']
+      item['HDMI'] = details['HDMI']
+      item['EkranKartıBellekTipi'] = details['EkranKartıBellekTipi']
+      item['Renk'] = details['Renk']
+      item['RamTipi'] = details['RamTipi']
 
-    if "HepsiBurada" in product: 
-      HepsiBurada = product['HepsiBurada']
+      if "HepsiBurada" in product: 
+        HepsiBurada = product['HepsiBurada']
 
-      if HepsiBurada['Mevcut'] == True:
+        if HepsiBurada['Mevcut'] == True:
 
-        item['HepsiBuradaPrice'] = HepsiBurada['Price']
-        item['HepsiBuradaURL'] = HepsiBurada['URL']
-        item['HepsiBuradaRating'] = None
+          item['HepsiBuradaPrice'] = HepsiBurada['Price']
+          item['HepsiBuradaURL'] = HepsiBurada['URL']
+          item['HepsiBuradaRating'] = None
 
+        else:
+          item['HepsiBuradaPrice'] = None
+          item['HepsiBuradaURL'] = None
+          item['HepsiBuradaRating'] = None
       else:
         item['HepsiBuradaPrice'] = None
         item['HepsiBuradaURL'] = None
         item['HepsiBuradaRating'] = None
-    else:
-      item['HepsiBuradaPrice'] = None
-      item['HepsiBuradaURL'] = None
-      item['HepsiBuradaRating'] = None
 
-    if "teknosa" in product: 
-      teknosa = product['teknosa']
+      if "teknosa" in product: 
+        teknosa = product['teknosa']
 
-      if teknosa['Mevcut'] == True:
+        if teknosa['Mevcut'] == True:
 
-        item['teknosaPrice'] = teknosa['Price']
-        item['teknosaURL'] = teknosa['URL']                
-        item['teknosaRating'] = None
+          item['teknosaPrice'] = teknosa['Price']
+          item['teknosaURL'] = teknosa['URL']                
+          item['teknosaRating'] = None
 
+        else:
+          item['teknosaPrice'] = None
+          item['teknosaURL'] = None
+          item['teknosaRating'] = None
       else:
         item['teknosaPrice'] = None
         item['teknosaURL'] = None
         item['teknosaRating'] = None
-    else:
-      item['teknosaPrice'] = None
-      item['teknosaURL'] = None
-      item['teknosaRating'] = None
 
-    if "Amazon" in product: 
-      Amazon = product['Amazon']
+      if "Amazon" in product: 
+        Amazon = product['Amazon']
 
-      if Amazon['Mevcut'] == True:
+        if Amazon['Mevcut'] == True:
 
-        item['AmazonPrice'] = Amazon['Price']
-        item['AmazonURL'] = Amazon['URL']
-        item['AmazonRating'] = None   
+          item['AmazonPrice'] = Amazon['Price']
+          item['AmazonURL'] = Amazon['URL']
+          item['AmazonRating'] = None   
+        else:
+            item['AmazonRating'] = None
+            item['AmazonURL'] = None
+            item['AmazonPrice'] = None
       else:
-          item['AmazonRating'] = None
-          item['AmazonURL'] = None
-          item['AmazonPrice'] = None
-    else:
-      item['AmazonRating'] = None
-      item['AmazonURL'] = None
-      item['AmazonPrice'] = None
+        item['AmazonRating'] = None
+        item['AmazonURL'] = None
+        item['AmazonPrice'] = None
 
-    if "vatanBilgisayar" in product: 
-      vatanBilgisayar = product['vatanBilgisayar']
+      if "vatanBilgisayar" in product: 
+        vatanBilgisayar = product['vatanBilgisayar']
 
-      if vatanBilgisayar['Mevcut'] == True:
+        if vatanBilgisayar['Mevcut'] == True:
 
-        item['vatanBilgisayarPrice'] = vatanBilgisayar['Price']
-        item['vatanBilgisayarURL'] = vatanBilgisayar['URL']
-        item['vatanBilgisayarRating'] = None
+          item['vatanBilgisayarPrice'] = vatanBilgisayar['Price']
+          item['vatanBilgisayarURL'] = vatanBilgisayar['URL']
+          item['vatanBilgisayarRating'] = None
 
+        else:
+          item['vatanBilgisayarPrice'] = None
+          item['vatanBilgisayarURL'] = None
+          item['vatanBilgisayarRating'] = None
       else:
         item['vatanBilgisayarPrice'] = None
         item['vatanBilgisayarURL'] = None
         item['vatanBilgisayarRating'] = None
-    else:
-      item['vatanBilgisayarPrice'] = None
-      item['vatanBilgisayarURL'] = None
-      item['vatanBilgisayarRating'] = None
 
-    if "cicekSepetiExtra" in product:  
-      cicekSepetiExtra = product['cicekSepetiExtra']
+      if "cicekSepetiExtra" in product:  
+        cicekSepetiExtra = product['cicekSepetiExtra']
 
-      if cicekSepetiExtra['Mevcut'] == True:
-        item['cicekSepetiExtraPrice'] = cicekSepetiExtra['Price']
-        item['cicekSepetiExtraURL'] = cicekSepetiExtra['URL']
-        item['cicekSepetiExtraRating'] = None
+        if cicekSepetiExtra['Mevcut'] == True:
+          item['cicekSepetiExtraPrice'] = cicekSepetiExtra['Price']
+          item['cicekSepetiExtraURL'] = cicekSepetiExtra['URL']
+          item['cicekSepetiExtraRating'] = None
+        else:
+          item['cicekSepetiExtraPrice'] = None
+          item['cicekSepetiExtraURL'] = None
+          item['cicekSepetiExtraRating'] = None
       else:
         item['cicekSepetiExtraPrice'] = None
         item['cicekSepetiExtraURL'] = None
         item['cicekSepetiExtraRating'] = None
-    else:
-      item['cicekSepetiExtraPrice'] = None
-      item['cicekSepetiExtraURL'] = None
-      item['cicekSepetiExtraRating'] = None
 
-    if "Trendyol" in product:
-      Trendyol = product['Trendyol']
+      if "Trendyol" in product:
+        Trendyol = product['Trendyol']
 
-      if Trendyol['Mevcut'] == True:
+        if Trendyol['Mevcut'] == True:
 
-        item['TrendyolPrice'] = Trendyol['Price']
-        item['TrendyolURL'] = Trendyol['URL']
-        item['TrendyolRating'] = None
+          item['TrendyolPrice'] = Trendyol['Price']
+          item['TrendyolURL'] = Trendyol['URL']
+          item['TrendyolRating'] = None
+        else:
+          item['TrendyolPrice'] = None
+          item['TrendyolURL'] = None
+          item['TrendyolRating'] = None
       else:
         item['TrendyolPrice'] = None
         item['TrendyolURL'] = None
         item['TrendyolRating'] = None
-    else:
-      item['TrendyolPrice'] = None
-      item['TrendyolURL'] = None
-      item['TrendyolRating'] = None
 
-    if "n11" in product:
-      n11 = product['n11']
+      if "n11" in product:
+        n11 = product['n11']
 
-      if n11['Mevcut'] == True:
+        if n11['Mevcut'] == True:
 
-        item['n11Price'] = n11['Price']
-        item['n11URL'] = n11['URL']
-        item['n11Rating'] = None
+          item['n11Price'] = n11['Price']
+          item['n11URL'] = n11['URL']
+          item['n11Rating'] = None
+        else:
+          item['n11Price'] = None
+          item['n11URL'] = None
+          item['n11Rating'] = None
       else:
         item['n11Price'] = None
         item['n11URL'] = None
-        item['n11Rating'] = None
-    else:
-      item['n11Price'] = None
-      item['n11URL'] = None
-      item['n11Rating'] = None       
-        
+        item['n11Rating'] = None       
+          
  
-    mycollectionSite.insert_one(item)
-    item.clear()
+      mycollectionSite.insert_one(item)
+      item.clear()

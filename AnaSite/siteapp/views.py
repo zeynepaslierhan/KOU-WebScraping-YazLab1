@@ -11,7 +11,7 @@ myclient = pymongo.MongoClient("mongodb://zeynep:20012022@ac-akv12vk-shard-00-00
 mydb = myclient["Bilgisayar"]
 
 # Bilgisayar Veritabanındaki Amazon koleksiyonuna erişim sağladık
-mycollection= mydb["siteapp_liste"]
+mycollection= mydb["siteapp_Liste"]
 
 def index(request):                                         #urls'de tanımlanan pathlerin html dosyalarıyla bağlantısı sağlandı.
     
@@ -35,42 +35,34 @@ def productsList_byBrand(request,brand):
 
 def productsList_byWeb(request,web):
     item={}
-    i = 0
     products = mycollection.find({})
     if web == "Amazon":
         for product in products:
             if product['AmazonPrice'] is not None:
-               item[i]=product
-               i=i+1
+               item.append(product)
     if web == "Trendyol":
         for product in products:
-            if product['AmazonPrice'] is not None:
-               item[i]=product
-               i=i+1
+            if product['TrendyolPrice'] is not None:
+               item.append(product)
     if web == "VatanBilgisayar":
         for product in products:
             if product['vatanBilgisayarPrice'] is not None:
-               item[i]=product
-               i=i+1
+               item.append(product)
     if web == "Teknosa":
         for product in products:
             if product['teknosaPrice'] is not None:
-               item[i]=product
-               i=i+1
+               item.append(product)
     if web == "n11":
         for product in products:
             if product['n11Price'] is not None:
-               item[i]=product
-               i=i+1
+               item.append(product)
     if web == "ÇiçekSepeti":
         for product in products:
             if product['cicekSepetiExtraPrice'] is not None:
-               item[i]=product
-               i=i+1
+               item.append(product)
     if web == "Hepsiburada":
         for product in products:
             if product['HepsiBuradaPrice'] is not None:
-               item[i]=product
-               i=i+1
-    return render(request, 'siteapp/index.html',item)
+               item.append(product)
+    return render(request, 'siteapp/index.html',{'item' : item})
 
