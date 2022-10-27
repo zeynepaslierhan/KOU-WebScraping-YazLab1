@@ -7,20 +7,8 @@ from django.contrib import admin
 from django.views.decorators.clickjacking import xframe_options_sameorigin
 from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
-
-# Register your models here.
-
-# admin ,  2001
-
-#admin.site.register(Ürünler)
 
 @admin.register(Ürünler)
-
-#class ÜrünAdmin(admin.ModelAdmin):
-    
-    
-    
         
 class MyModelModelAdmin(ExtraButtonsMixin, admin.ModelAdmin):
 
@@ -32,7 +20,6 @@ class MyModelModelAdmin(ExtraButtonsMixin, admin.ModelAdmin):
         self.message_user(request, 'Web Scraping başlatılıyor')
         # Optional: returns HttpResponse
         return HttpResponseRedirectToReferrer(request)
-    
     
     
     list_display = ("name", "marka")
