@@ -42,6 +42,35 @@ def productsList_byWeb(request,web):
             if product['AmazonPrice'] is not None:
                item[i]=product
                i=i+1
-    
+    if web == "Trendyol":
+        for product in products:
+            if product['AmazonPrice'] is not None:
+               item[i]=product
+               i=i+1
+    if web == "VatanBilgisayar":
+        for product in products:
+            if product['vatanBilgisayarPrice'] is not None:
+               item[i]=product
+               i=i+1
+    if web == "Teknosa":
+        for product in products:
+            if product['teknosaPrice'] is not None:
+               item[i]=product
+               i=i+1
+    if web == "n11":
+        for product in products:
+            if product['n11Price'] is not None:
+               item[i]=product
+               i=i+1
+    if web == "ÇiçekSepeti":
+        for product in products:
+            if product['cicekSepetiExtraPrice'] is not None:
+               item[i]=product
+               i=i+1
+    if web == "Hepsiburada":
+        for product in products:
+            if product['HepsiBuradaPrice'] is not None:
+               item[i]=product
+               i=i+1
     return render(request, 'siteapp/index.html',item)
 
