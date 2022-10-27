@@ -12,6 +12,7 @@ mydb = myclient["Bilgisayar"]
 
 # Bilgisayar Veritabanındaki Amazon koleksiyonuna erişim sağladık
 mycollection= mydb["siteapp_Liste"]
+mynewcollection=mydb['web']
 
 def index(request):                                         #urls'de tanımlanan pathlerin html dosyalarıyla bağlantısı sağlandı.
     
@@ -34,35 +35,36 @@ def productsList_byBrand(request,brand):
     return render(request, 'siteapp/index.html',{'bilg_list':bilg_list})
 
 def productsList_byWeb(request,web):
-    item={}
+    mynewcollection.delete_many({})
     products = mycollection.find({})
     if web == "Amazon":
         for product in products:
             if product['AmazonPrice'] is not None:
-               item.append(product)
+               mynewcollection.insert_one(product)
     if web == "Trendyol":
         for product in products:
             if product['TrendyolPrice'] is not None:
-               item.append(product)
+               mynewcollection.insert_one(product)
     if web == "VatanBilgisayar":
         for product in products:
             if product['vatanBilgisayarPrice'] is not None:
-               item.append(product)
+               mynewcollection.insert_one(product)
     if web == "Teknosa":
         for product in products:
             if product['teknosaPrice'] is not None:
-               item.append(product)
+               mynewcollection.insert_one(product)
     if web == "n11":
         for product in products:
             if product['n11Price'] is not None:
-               item.append(product)
+               mynewcollection.insert_one(product)
     if web == "ÇiçekSepeti":
         for product in products:
             if product['cicekSepetiExtraPrice'] is not None:
-               item.append(product)
+               mynewcollection.insert_one(product)
     if web == "Hepsiburada":
         for product in products:
             if product['HepsiBuradaPrice'] is not None:
-               item.append(product)
-    return render(request, 'siteapp/index.html',{'item' : item})
+               mynewcollection.insert_one(product)
+    bilg_list = mynewcollection.find({})
+    return render(request, 'siteapp/index.html',{'bilg_list' : bilg_list})
 
