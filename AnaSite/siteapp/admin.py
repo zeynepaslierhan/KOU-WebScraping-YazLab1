@@ -37,4 +37,4 @@ class MyModelModelAdmin(ExtraButtonsMixin, admin.ModelAdmin):
         # Optional: returns HttpResponse
         return HttpResponseRedirectToReferrer(request)
     
-list_display = ("name", "marka")        
+list_display = ("Name")        
