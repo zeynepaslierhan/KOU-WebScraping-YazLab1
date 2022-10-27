@@ -11,7 +11,7 @@ import WebScraping
 import VeriAktarımı
 
 
-@admin.register(Ürün)
+@admin.register(Liste)
 
 class MyModelModelAdmin(ExtraButtonsMixin, admin.ModelAdmin):
 

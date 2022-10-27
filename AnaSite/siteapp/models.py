@@ -1,14 +1,15 @@
 from dataclasses import field
 from enum import unique
+from lib2to3.pgen2.parse import ParseError
+from rest_framework.response import *
 from django.db import models
 from djongo import models
 import pymongo
 
 # Create your models here.
 
-class Ürün(models.Model):
-    
-    id = models.AutoField(primary_key=True)
+class Liste(models.Model):
+    _id = models.ObjectIdField()
     Name = models.CharField(max_length= 200)
     index = models.IntegerField()
     Img = models.CharField(max_length = 300)
@@ -48,5 +49,3 @@ class Ürün(models.Model):
     n11URL = models.CharField(max_length = 300, blank=True)
     n11Rating= models.CharField(max_length = 300, blank=True)
     
-    def __str__(self):
-        return f"{self.name}, {self.marka}"

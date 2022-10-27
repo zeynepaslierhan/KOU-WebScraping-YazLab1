@@ -82,7 +82,6 @@ DATABASES = {
         'default': {
             'ENGINE': 'djongo',
             'NAME': 'Bilgisayar',
-            'ENFORCE_SCHEMA': True,
             'CLIENT': {
                 'host': 'mongodb://zeynep:20012022@ac-akv12vk-shard-00-00.6erqfem.mongodb.net:27017,ac-akv12vk-shard-00-01.6erqfem.mongodb.net:27017,ac-akv12vk-shard-00-02.6erqfem.mongodb.net:27017/?ssl=true&replicaSet=atlas-8ffx15-shard-0&retryWrites=true&w=majority'
             }
@@ -126,8 +125,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),           # static klasörünü ana dizine aldığımızda algılaması için path ayarı.
+STATICFILES_DIRS = [          # static klasörünü ana dizine aldığımızda algılaması için path ayarı.
 ]
 
 # Default primary key field type
