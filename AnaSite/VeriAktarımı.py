@@ -7,7 +7,7 @@ myclient = pymongo.MongoClient("mongodb://zeynep:20012022@ac-akv12vk-shard-00-00
 mydb = myclient["Bilgisayar"]
 
 mycollection= mydb["Products"]
-mycollectionSite= mydb["siteapp_ürün"]
+mycollectionSite= mydb["siteapp_Liste"]
 
 def VeriAktar():
     
