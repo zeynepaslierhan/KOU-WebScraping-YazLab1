@@ -2213,7 +2213,9 @@
 
         <a class='btn btn-link' href='http://127.0.0.1:8000/'>
           <div style="display:flex">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUL32BZIptQFtzrmUGeDuvaqta9EHmH43lRihmWrxFP-oThruXi7NOv4g1jHCQZzzKxYE&usqp=CAU" height="50">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUL32BZIptQFtzrmUGeDuvaqta9EHmH43lRihmWrxFP-oThruXi7NOv4g1jHCQZzzKxYE&usqp=CAU"
+              height="50">
             <h2 style="font-size:20px">SMURFS</h2>
           </div>
         </a>
@@ -2232,18 +2234,15 @@
         <div class="pdt_v8">
           <h1>{{bilgisayar.Name}}</h1>
         </div>
-        <div id="PI_v8" class="pdi_v8"><a class="img_w"
-          ><img
-             itemprop="image"
+        <div id="PI_v8" class="pdi_v8"><a class="img_w"><img itemprop="image"
               onerror="var p = this.parentNode.parentNode;p.className=(p.className?p.className+' ':'')+'nopi';"
-              onload="var p = this.parentNode.parentNode;p.classList.remove('nopi');"
-              src="{{bilgisayar.Img}}"></a>
+              onload="var p = this.parentNode.parentNode;p.classList.remove('nopi');" src="{{bilgisayar.Img}}"></a>
         </div>
         <div class="bb_w"><a
             href="/c/?z=125&amp;v=11707&amp;s=1&amp;p=1759716992&amp;c=20155&amp;g=61576483&amp;f=%2Fr%2F%3Fpr%3D1759716992%26vd%3D11707%26pg%3D61576483"
             class="iC xt_v8" rel="nofollow" target="_blank"><span class="bt_v8"></span></a></span>
-          <p class="dts_v8">Ürün Özellikleri: Marka: {{bilgisayar.Marka}}, Bellek Hızı: {{bilgisayar.BellekHızı}}  ...... <a href="#urun-ozellikleri" full="" hd=""
-              notebook="" Özellikleri"="">Devamını gör</a></p>
+          <p class="dts_v8">Ürün Özellikleri: Marka: {{bilgisayar.Marka}}, Bellek Hızı: {{bilgisayar.BellekHızı}} ......
+            <a href="#urun-ozellikleri" full="" hd="" notebook="" Özellikleri"="">Devamını gör</a></p>
           <hr class="graph_w_brace">
 
         </div>
@@ -2255,164 +2254,170 @@
       <section>
         <div id="LM_w_v8" class="lm_w_v8">
           <h2 class="st_v8" id="LMP_v8">Tüm fiyatlar</h2>
-        
+
         </div>
 
         <div id="PL_h">
-            <ul id="PL" class="pl_v8 pr_v8">
+          <ul id="PL" class="pl_v8 pr_v8">
+            
+            {% if bilgisayar.HepsiBuradaPrice != null %}
+            <li>
+              <a href="{{bilgisayar.HepsiBuradaURL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">
+                    {{bilgisayar.HepsiBuradaPrice}} TL
+                  </span>
+                </span></span>
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
+                </span>
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span><span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/12088.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
+              </a>
+            </li>
+            {% endif %}
 
-              {% if bilgisayar.HepsiBuradaPrice != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.HepsiBuradaURL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">
-                        {{bilgisayar.HepsiBuradaPrice}} TL 
-                    </span>
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+            {% if bilgisayar.teknosaPrice != null %}
+            <li class="c">
+              <a href="{{bilgisayar.teknosaURL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.teknosaPrice}} TL
                   </span>
                 </span>
-                
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
+                </span>
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span>
+                <span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/10402.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
               </a>
-              </li>
-              {% endif %}
+            </li>
+            {% endif %}
 
-              {% if bilgisayar.teknosaPrice != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.teknosaURL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">{{bilgisayar.teknosaPrice}} TL
-                    </span> 
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+            {% if bilgisayar.AmazonPrice != null %}
+            <li class="c">
+              <a href="{{bilgisayar.AmazonURL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.AmazonPrice}} TL
                   </span>
                 </span>
-                
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
+                </span>
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span>
+                <span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/10001.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
               </a>
-              </li>
-              {% endif %}
+            </li>
+            {% endif %}
 
-              {% if bilgisayar.AmazonPrice != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.AmazonURL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">{{bilgisayar.AmazonPrice}} TL
-                    </span> 
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+            {% if bilgisayar.vatanBilgisayarPrice != null %}
+            <li class="c">
+              <a href="{{bilgisayar.vatanBilgisayarURL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.vatanBilgisayarPrice}} TL
                   </span>
                 </span>
-                
-              </a>
-              </li>
-              {% endif %}
-              
-              {% if bilgisayar.vatanBilgisayarPrice != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.vatanBilgisayarURL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">{{bilgisayar.vatanBilgisayarPrice}} TL
-                    </span> 
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
-                  </span>
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
                 </span>
-                
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span>
+                <span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/1201.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
               </a>
-              </li>
-              {% endif %}
+            </li>
+            {% endif %}
 
-              {% if bilgisayar.cicekSepetiExtraPrice != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.cicekSepetiExtraURL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">{{bilgisayar.cicekSepetiExtraPrice}} TL
-                    </span> 
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+            {% if bilgisayar.cicekSepetiExtraPrice != null %}
+            <li class="c">
+              <a href="{{bilgisayar.cicekSepetiExtraURL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.cicekSepetiExtraPrice}} TL
                   </span>
                 </span>
-                
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
+                </span>
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span>
+                <span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/10236.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
               </a>
-              </li>
-              {% endif %}
+            </li>
+            {% endif %}
 
-              {% if bilgisayar.TrendyolPrice != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.TrendyolURL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">{{bilgisayar.TrendyolPrice}} TL
-                    </span> 
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+            {% if bilgisayar.TrendyolPrice != null %}
+            <li class="c">
+              <a href="{{bilgisayar.TrendyolURL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.TrendyolPrice}} TL
                   </span>
                 </span>
-                
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
+                </span>
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span>
+                <span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/11707.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
               </a>
-              </li>
-              {% endif %}
+            </li>
+            {% endif %}
 
-              {% if bilgisayar.n11Price != null %}
-              <li class="c">
-                <a
-                  href="{{bilgisayar.n11URL}}"
-                  class="iC xt_v8" rel="nofollow" target="_blank">
-                  <span class="pb_v8">
-                    <span class="pt_v8">{{bilgisayar.n11Price}} TL
-                    </span> 
-                  </span>
-                  <span class="bt_v8" href=""><b>Satıcıya Git</b>
-                  </span>
-                  <span class="w_v8">
-                    <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+            {% if bilgisayar.n11Price != null %}
+            <li class="c">
+              <a href="{{bilgisayar.n11URL}}" class="iC xt_v8" rel="nofollow" target="_blank">
+                <span class="pb_v8">
+                  <span class="pt_v8">{{bilgisayar.n11Price}} TL
                   </span>
                 </span>
-                
+                <span class="bt_v8" href=""><b>Satıcıya Git</b>
+                </span>
+                <span class="w_v8">
+                  <h3 class="pn_v8">{{bilgisayar.Name}}</h3>
+                </span>
+                </span>
+                <span class="w_v8"><span class="v_v8"><img 
+                  src="//cdn.akakce.com/im/m6/11070.svg"
+                  style="background: none; opacity: 1; min-height: unset; min-width: unset;">
+              </span></span>
               </a>
-              </li>
-              {% endif %}
-              
+            </li>
+            {% endif %}
+
 
       </section>
-        <hr />
-        </div>
+      <hr />
+    </div>
     </br>
     </br>
 
     <div class="rw_v8">
       <section>
         <h2><a name="urun-ozellikleri"></a>{{bilgisayar.Name}} Özellikleri</h2>
-        <br/>
+        <br />
         <div id="DT_w" class="wbb_v8">
           <div class="ppts_v8">
             <table class="ppt" border="1">
